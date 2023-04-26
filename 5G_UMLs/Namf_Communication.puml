@@ -1,0 +1,18 @@
+@startuml
+!$AMFStatusChangeSubscribeModfy = "#green"
+!$AMFStatusChangeUnSubscribe = "#green"
+!$CancelRelocateUEContext = "#green"
+!$CreateUEContext = "#gray"
+!$EBIAssignment = "#green"
+!$RegistrationStatusUpdate = "#gray"
+!$ReleaseUEContext = "#gray"
+!$RelocateUEContext = "#gray"
+!$UEContextTransfer = "#gray"
+!$N1N2MessageUnSubscribe = "#gray"
+!$N1N2MessageTransfer = "#gray"
+!$N1N2MessageSubscribe = "#gray"
+!$NonUeN2InfoUnSubscribe = "#gray"
+!$NonUeN2MessageTransfer = "#gray"
+!$NonUeN2InfoSubscribe = "#gray"
+!$AMFStatusChangeSubscribe = "#gray"
+@enduml
