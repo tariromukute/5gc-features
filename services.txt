@@ -1,0 +1,2 @@
+TS29518_Namf_Communication
+TS29518_Namf_EventExposure

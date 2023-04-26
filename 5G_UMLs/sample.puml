@@ -1,0 +1,27 @@
+@startuml
+!define MAINPATH https://fakeurl.com
+!define OBJECT {"name": "John", "age": 30}
+
+title Example PlantUML Code
+
+actor User
+
+User -> API: Get JSON data
+API -> Server: Fetch JSON data
+Server -> API: Return JSON data
+API --> User: Return JSON data
+
+User -> Parser: Parse JSON data
+activate Parser
+alt JSON object is not empty
+    Parser -> Parser: Extract name from JSON object
+    Parser -> Parser: Extract age from JSON object
+    !$name = $OBJECT.name ?: "Unknown"
+    !$age = $OBJECT.age ?: -1
+    Parser --> User: Return parsed data (Name: {name}, Age: {age})
+else
+    Parser --> User: Return error message
+end
+deactivate Parser
+
+@enduml

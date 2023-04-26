@@ -14,14 +14,27 @@ docker run --rm \
 
 # Generate html inventory list using our custom template
 docker run --rm \
-  -v ${PWD}/openapi:/local openapitools/openapi-generator-cli generate \
-  -i /local/petstore.yaml \
+  -v ${PWD}/openapi:/local \
+  -v ${PWD}/5G_APIs:/home \
+  openapitools/openapi-generator-cli generate \
+  -i /home/TS29518_Namf_Communication.yaml \
   -g html \
   -t /local/templates/html/ \
   -o /local/out/html
+
+docker run --rm \
+  -v ${PWD}/openapi:/local \
+  -v ${PWD}/5G_APIs:/home \
+  openapitools/openapi-generator-cli generate \
+  -i /home/TS29518_Namf_Communication.yaml \
+  -g plantuml \
+  -o /local/out/plantuml
 ```
 
 ```bash
 docker run --rm \
-  -v ${PWD}:/opt tariromukute/plantuml example.puml
+  -v ${PWD}/5G_UMLs:/home tariromukute/plantuml /home/example.puml
+
+docker run --rm \
+  -v ${PWD}/openapi/out/plantuml:/home tariromukute/plantuml /home/schemas.plantuml
 ```

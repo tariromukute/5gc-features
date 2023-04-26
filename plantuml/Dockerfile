@@ -2,9 +2,6 @@ FROM openjdk:11
 
 WORKDIR /opt
 
-COPY docker-entrypoint.sh .
-
-
 RUN apt-get update && apt-get install -y wget --no-install-recommends
 
 # Build Graphviz from source because there are no binary distributions for recent versions
@@ -35,12 +32,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf $GRAPHVIZ_BUILD_DIR
 
-# Download .jar file
-RUN curl -o /opt/plantuml.jar https://tenet.dl.sourceforge.net/project/plantuml/plantuml.jar
-
+COPY docker-entrypoint.sh /opt/docker-entrypoint.sh
+COPY plantuml.jar /opt/plantuml.jar
 RUN chmod +x /opt/docker-entrypoint.sh
 
-# ENTRYPOINT ["/opt/docker-entrypoint.sh"]
+ENTRYPOINT ["/opt/docker-entrypoint.sh"]
 
-# CMD ["help"]
-ENTRYPOINT tail -f /dev/null
+CMD ["help"]
+# ENTRYPOINT tail -f /dev/null

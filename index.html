@@ -1,56 +1,156 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Checklist</title>
-  </head>
-  <body>
-    <h1>Checklist</h1>
-    <ul>
-      <li><input type="checkbox" name="task1" value="Task 1"> Task 1</li>
-      <li><input type="checkbox" name="task2" value="Task 2"> Task 2</li>
-      <li><input type="checkbox" name="task3" value="Task 3"> Task 3</li>
-      <li><input type="checkbox" name="task4" value="Task 4"> Task 4</li>
-      <li><input type="checkbox" name="task5" value="Task 5"> Task 5</li>
-    </ul>
 
-    <button onclick="generateJSON()">Generate JSON and save to file</button>
+<head>
+	<title>Generate Support Inventory</title>
+	<style>
+		/* Style the page container */
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			width: 100%;
+		}
 
-    <script>
-      function generateJSON() {
-        var checklist = [];
-        var items = document.getElementsByTagName('li');
+		/* Style the top horizontal div */
+		.top-div {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 50px;
+			padding: 0 20px;
+			background-color: #f1f1f1;
+			border-bottom: 1px solid #ccc;
+			box-sizing: border-box;
+		}
 
-        for (var i = 0; i < items.length; i++) {
-          var checkbox = items[i].querySelector('input[type="checkbox"]');
-          var label = items[i].textContent.trim();
-          var value = checkbox.checked;
+		/* Style the tab container */
+		.tab {
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+			border: 1px solid #ccc;
+			background-color: #f1f1f1;
+			height: 100%;
+			max-width: 200px;
+		}
 
-          var item = {label: label, value: value};
-          checklist.push(item);
-        }
+		/* Style the tab buttons */
+		.tab button {
+			background-color: inherit;
+			border: none;
+			outline: none;
+			padding: 10px 16px;
+			margin: 0;
+			font-size: 17px;
+			cursor: pointer;
+			transition: 0.3s;
+			flex: 1;
+			text-align: left;
+		}
 
-        var jsonString = JSON.stringify(checklist);
-        
-        // create a new blob object containing the JSON data
-        var blob = new Blob([jsonString], {type: "application/json"});
-        
-        // create a new URL for the blob object
-        var url = URL.createObjectURL(blob);
-        
-        // create a new link element
-        var link = document.createElement("a");
-        link.href = url;
-        link.download = "checklist.json";
-        
-        // simulate a click on the link to trigger the download
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
-        // release the URL object
-        URL.revokeObjectURL(url);
-      }
-    </script>
-  </body>
+		/* Change background color of active tab button */
+		.tab button.active {
+			background-color: #ccc;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+			display: none;
+			padding: 6px 12px;
+			border: 1px solid #ccc;
+			border-top: none;
+			height: 100%;
+			flex: 1;
+		}
+
+		/* Style the iframe container */
+		.iframe-container {
+			flex: 1;
+			height: 100%;
+		}
+
+		/* Style the iframe */
+		iframe {
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- Define the top horizontal div -->
+	<div class="top-div">
+		<!-- <h2>Select file with the list of services</h2> -->
+		<input id="fileupload" type="file">
+	</div>
+	<script>
+		// read local file using FileReader API
+		// const fileInput = document.createElement('input');
+		// fileInput.type = 'file';
+		const fileInput = document.getElementById('fileupload');
+		fileInput.addEventListener('change', event => {
+			const file = event.target.files[0];
+			const reader = new FileReader();
+			reader.readAsText(file);
+			reader.onload = event => {
+				const data = event.target.result;
+
+				// parse the data and loop through the list of names
+				const names = data.trim().split('\n');
+				names.forEach(name => {
+                    const tabMenuHtml = `<button class="tablinks active" onclick="openTab(event, '${name}')">${name}</button>`;
+                    const tabHtml = `<div id="${name}" class="tabcontent" style="display:block">
+                                        <iframe src="out/${name}.html"></iframe>
+                                    </div>`
+                    const tabMenuDiv = document.getElementById('services-menu');
+			        tabMenuDiv.innerHTML += tabMenuHtml;
+                    const tabsDiv = document.getElementById('services-tab');
+                    tabsDiv.innerHTML += tabHtml;
+				});
+			};
+		});
+		document.body.appendChild(fileInput);
+	</script>
+
+	<!-- Define the tab container -->
+	<div id="services-menu" class="tab">
+
+	</div>
+
+	<!-- Define the iframe container -->
+	<div id="services-tab" class="iframe-container">
+
+
+	</div>
+
+	<!-- Script to handle tab switching -->
+	<script>
+		function openTab(evt, tabName) {
+			// Declare variables
+			var i, tabcontent, tablinks;
+
+			// Hide all tab content
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+
+			// Deactivate all tab buttons
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+
+			// Show the selected tab content and activate the corresponding button
+			document.getElementById(tabName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+	</script>
+</body>
+
 </html>

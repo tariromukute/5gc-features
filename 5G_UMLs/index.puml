@@ -1,0 +1,15 @@
+@startuml
+
+title Example Sequence Diagram
+
+actor User
+
+User -> Foo: Request data
+activate Foo
+Foo -> Database: Query data
+activate Database
+Database --> Foo: Return data
+deactivate Database
+Foo --> User: Return data
+deactivate Foo
+@enduml

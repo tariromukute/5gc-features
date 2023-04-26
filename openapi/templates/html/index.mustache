@@ -38,13 +38,18 @@
     <button onclick="generateJSON()">Generate JSON and save to file</button>
 
     <script>
+      // OpenAPI Generator changes the Case type for Operation names
+      function capitalizeFirstLetter(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+
       function generateJSON() {
         var checklist = [];
         var items = document.getElementsByTagName('li');
 
         for (var i = 0; i < items.length; i++) {
           var checkbox = items[i].querySelector('input[type="checkbox"]');
-          var label = checkbox.name.trim();
+          var label = capitalizeFirstLetter(checkbox.name.trim());
           var value = checkbox.checked;
 
           var item = {label: label, value: value};
@@ -62,7 +67,7 @@
         // create a new link element
         var link = document.createElement("a");
         link.href = url;
-        link.download = "checklist.json";
+        link.download = "{{{appName}}}.json";
         
         // simulate a click on the link to trigger the download
         document.body.appendChild(link);
