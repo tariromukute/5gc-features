@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{{appName}}}</title>
+    <style type="text/css">
+      {{>style.css}}
+    </style>
+  </head>
+  <body>
+  <h1>{{{appName}}}</h1>
+    <div class="app-desc">{{{appDescription}}}</div>
+    {{#infoUrl}}<div class="app-desc">More information: <a href="{{{infoUrl}}}">{{{infoUrl}}}</a></div>{{/infoUrl}}
+    {{#infoEmail}}<div class="app-desc">Contact Info: <a href="{{{infoEmail}}}">{{{infoEmail}}}</a></div>{{/infoEmail}}
+    {{#version}}<div class="app-desc">Version: {{{.}}}</div>{{/version}}
+    {{#basePathWithoutHost}}<div class="app-desc">BasePath:{{.}}</div>{{/basePathWithoutHost}}
+    <div class="license-info">{{{licenseInfo}}}</div>
+    <div class="license-url">{{{licenseUrl}}}</div>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  {{! for the tables of content, I cheat and don't use CSS styles.... }}
+  <h3>Table of Contents </h3>
+  <div class="method-summary">{{access}}</div>
+  {{#apiInfo}}
+  {{#apis}}
+  {{#operations}}
+  <h4><a href="#{{baseName}}">{{baseName}}</a></h4>
+  <ul>
+  {{#operation}}
+  <li><a href="#{{nickname}}"><code><span class="http-method">{{httpMethod}}</span> {{path}}</code></a> <input type="checkbox" name="{{nickname}}" value="{{nickname}}"></li>
+  {{/operation}}
+  </ul>
+  {{/operations}}
+  {{/apis}}
+  {{/apiInfo}}
+
+    <button onclick="generateJSON()">Generate JSON and save to file</button>
+
+    <script>
+      function generateJSON() {
+        var checklist = [];
+        var items = document.getElementsByTagName('li');
+
+        for (var i = 0; i < items.length; i++) {
+          var checkbox = items[i].querySelector('input[type="checkbox"]');
+          var label = checkbox.name.trim();
+          var value = checkbox.checked;
+
+          var item = {label: label, value: value};
+          checklist.push(item);
+        }
+
+        var jsonString = JSON.stringify(checklist);
+        
+        // create a new blob object containing the JSON data
+        var blob = new Blob([jsonString], {type: "application/json"});
+        
+        // create a new URL for the blob object
+        var url = URL.createObjectURL(blob);
+        
+        // create a new link element
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = "checklist.json";
+        
+        // simulate a click on the link to trigger the download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // release the URL object
+        URL.revokeObjectURL(url);
+      }
+    </script>
+  </body>
+</html>

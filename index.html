@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Checklist</title>
+  </head>
+  <body>
+    <h1>Checklist</h1>
+    <ul>
+      <li><input type="checkbox" name="task1" value="Task 1"> Task 1</li>
+      <li><input type="checkbox" name="task2" value="Task 2"> Task 2</li>
+      <li><input type="checkbox" name="task3" value="Task 3"> Task 3</li>
+      <li><input type="checkbox" name="task4" value="Task 4"> Task 4</li>
+      <li><input type="checkbox" name="task5" value="Task 5"> Task 5</li>
+    </ul>
+
+    <button onclick="generateJSON()">Generate JSON and save to file</button>
+
+    <script>
+      function generateJSON() {
+        var checklist = [];
+        var items = document.getElementsByTagName('li');
+
+        for (var i = 0; i < items.length; i++) {
+          var checkbox = items[i].querySelector('input[type="checkbox"]');
+          var label = items[i].textContent.trim();
+          var value = checkbox.checked;
+
+          var item = {label: label, value: value};
+          checklist.push(item);
+        }
+
+        var jsonString = JSON.stringify(checklist);
+        
+        // create a new blob object containing the JSON data
+        var blob = new Blob([jsonString], {type: "application/json"});
+        
+        // create a new URL for the blob object
+        var url = URL.createObjectURL(blob);
+        
+        // create a new link element
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = "checklist.json";
+        
+        // simulate a click on the link to trigger the download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // release the URL object
+        URL.revokeObjectURL(url);
+      }
+    </script>
+  </body>
+</html>
