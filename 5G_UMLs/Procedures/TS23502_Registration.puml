@@ -1,0 +1,119 @@
+@startuml General Registration
+
+!$DEFAULT_COLOR = "#gray"
+
+participant UE as UE
+participant "R(AN)" as RAN
+participant "New AMF" as NAMF
+participant "Old AMF" as OAMF
+participant EIR as EIR
+participant "N3IWF/TNGF/W-AGF" as WGF
+participant PCF as PCF
+participant SMF as SMF
+participant AUSF as AUSF
+participant UDM as UDM
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Namf_Communication_UEContextTransfer ?= $DEFAULT_COLOR
+!$Namf_Communication_RegistrationStatusUpdate ?= $DEFAULT_COLOR
+!$N5geir_EquipmentIdentityCheck_Get ?= $DEFAULT_COLOR
+!$Nudm_UECM_Registration ?= $DEFAULT_COLOR
+!$Nudm_SDM_Get ?= $DEFAULT_COLOR
+!$Nudm_SDM_Subscribe ?= $DEFAULT_COLOR
+!$Nudm_UECM_DeregistrationNotification ?= $DEFAULT_COLOR
+!$Nudm_SDM_Unsubscribe ?= $DEFAULT_COLOR
+!$Nsmf_PDUSession_UpdateSMContext ?= $DEFAULT_COLOR
+!$Nsmf_PDUSession_ReleaseSMContext ?= $DEFAULT_COLOR
+!$Nudm_UECM_Registration ?= $DEFAULT_COLOR
+!$Nudm_UECM_DeregistrationNotify ?= $DEFAULT_COLOR
+!$Nudm_SDM_Unsubscribe ?= $DEFAULT_COLOR
+!$Nudm_SDM_Info ?= $DEFAULT_COLOR
+!$Nudm_UECM_Update ?= $DEFAULT_COLOR
+!$UE_Context_Modification ?= $DEFAULT_COLOR
+
+' Requests go from left to right
+' Responses go from right to left
+autonumber
+UE -> RAN : Registration Request
+
+ref over RAN
+    2. AMF selection
+end ref
+
+autonumber 3
+RAN -> NAMF : Registration Request
+NAMF -[$Namf_Communication_UEContextTransfer]-> OAMF : Namf_Communication_UEContextTransfer
+NAMF <-[$Namf_Communication_UEContextTransfer]- OAMF : Namf_Communication_UEContextTransfer response
+NAMF --> UE : Identity Request
+NAMF <-- UE : Identity Response
+
+ref over NAMF
+    8. AUSF selection
+end ref
+
+ref over UE, UDM
+    9. Authentication/Security
+end ref
+
+autonumber 10
+NAMF -[$Namf_Communication_RegistrationStatusUpdate]-> OAMF : Namf_Communication_RegistrationStatusUpdate
+NAMF <--> UE : Identity Request/Response
+NAMF -[$N5geir_EquipmentIdentityCheck_Get]-> EIR : N5g-eir_EquipmentIdentityCheck_Get
+autonumber stop
+NAMF <-[$N5geir_EquipmentIdentityCheck_Get]- EIR
+
+ref over NAMF
+    13. UDM selection
+end ref
+
+autonumber 14.0
+NAMF -[$Nudm_UECM_Registration]-> UDM : Nudm_UECM_Registration
+autonumber stop
+NAMF <-[$Nudm_UECM_Registration]- UDM
+autonumber resume
+NAMF -[$Nudm_SDM_Get]-> UDM : Nudm_SDM_Get
+autonumber stop
+NAMF <-[$Nudm_SDM_Get]- UDM
+autonumber resume
+NAMF -[$Nudm_SDM_Subscribe]-> UDM : Nudm_SDM_Subscribe
+UDM -[$Nudm_UECM_DeregistrationNotification]-> OAMF : Nudm_UECM_DeregistrationNotification
+UDM <-[$Nudm_SDM_Unsubscribe]- OAMF : Nudm_SDM_Unsubscribe
+
+autonumber stop
+ref over NAMF
+    15. PCF selection
+end ref
+
+autonumber 16
+NAMF <--> PCF : AM Policy Association Establishment/Modification
+NAMF -[$Nsmf_PDUSession_UpdateSMContext]-> SMF : Nsmf_PDUSession_UpdateSMContext
+autonumber stop
+NAMF -[$Nsmf_PDUSession_ReleaseSMContext]-> SMF : Nsmf_PDUSession_ReleaseSMContext
+autonumber resume
+NAMF -[$UE_Context_Modification]-> WGF : UE Context Modification Request
+NAMF <-[$UE_Context_Modification]- WGF : UE Context Modification Response
+autonumber 19.1
+NAMF -[$Nudm_UECM_Registration]-> UDM : Nudm_UECM_Registration
+UDM -[$Nudm_UECM_DeregistrationNotify]-> OAMF : Nudm_UECM_DeregistrationNotify
+UDM <-[$Nudm_SDM_Unsubscribe]- OAMF : Nudm_SDM_Unsubscribe
+autonumber 21.0
+NAMF -> UE :  Registration Accept
+NAMF <--> PCF :  UE Policy Association Establishment
+autonumber 22
+NAMF <-- UE :  Registration Complete
+autonumber 23.0
+NAMF -[$Nudm_SDM_Info]-> UDM : Nudm_SDM_Info
+autonumber stop
+NAMF <-[$Nudm_SDM_Info]- UDM
+autonumber resume
+NAMF --> RAN : N2 message
+autonumber 24
+NAMF -[$Nudm_UECM_Update]-> UDM : Nudm_UECM_Update
+autonumber stop
+NAMF <-[$Nudm_UECM_Update]- UDM
+autonumber resume
+
+ref over UE, NAMF
+    25.  Network Slice-Specific Authentication and Authorization 
+end ref
+@enduml
