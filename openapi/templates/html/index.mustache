@@ -51,7 +51,7 @@
         variables += "@startuml\n"
         for (var i = 0; i < items.length; i++) {
           var checkbox = items[i].querySelector('input[type="checkbox"]');
-          var label = capitalizeFirstLetter(checkbox.name.trim());
+          var label = "{{appName}}_" + capitalizeFirstLetter(checkbox.name.trim());
           var value = checkbox.checked ? "#green" : "#gray";
 
           var item = {label: label, value: value};

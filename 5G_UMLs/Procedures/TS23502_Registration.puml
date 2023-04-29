@@ -1,5 +1,8 @@
 @startuml General Registration
 
+!include /home/common.puml
+!include /home/vars/Namf_Communication.puml
+
 !$DEFAULT_COLOR = "#gray"
 
 participant UE as UE
