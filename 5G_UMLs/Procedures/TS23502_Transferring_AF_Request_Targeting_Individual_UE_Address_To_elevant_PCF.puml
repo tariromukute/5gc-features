@@ -1,0 +1,3 @@
+@startuml Transferring an AF request targeting an individual UE address to the relevant PCF
+
+@enduml

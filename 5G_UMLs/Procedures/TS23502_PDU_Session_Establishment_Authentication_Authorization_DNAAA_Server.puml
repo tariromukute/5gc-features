@@ -1,0 +1,3 @@
+@startuml PDU Session Establishment authentication/authorization by a DN-AAA server
+
+@enduml
