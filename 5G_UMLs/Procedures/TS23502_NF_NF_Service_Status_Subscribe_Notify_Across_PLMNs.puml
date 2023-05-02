@@ -1,0 +1,3 @@
+@startuml NF/NF service status subscribe/notify across PLMNs
+
+@enduml
