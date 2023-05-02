@@ -1,3 +1,7 @@
 @startuml SM Policy Association Termination
 
+' Used by:
+'   TS23502_UEInitiated_Deregistration.puml
+'   TS23502_UE_Triggered_Service_Request.puml
+
 @enduml

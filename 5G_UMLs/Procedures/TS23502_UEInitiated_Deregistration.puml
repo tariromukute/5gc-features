@@ -3,6 +3,10 @@
 !include /home/common.puml
 !include /home/vars/Namf_Communication.puml
 
+' Uses:
+'   TS23502_SM_Policy_Association_Termination.puml
+'   TS23502_AMF_Initiated_AM_Policy_Association_Termination.puml
+
 !$DEFAULT_COLOR = "#gray"
 
 participant UE as UE

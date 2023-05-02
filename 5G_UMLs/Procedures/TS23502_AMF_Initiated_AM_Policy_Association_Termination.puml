@@ -1,3 +1,6 @@
 @startuml AMF-initiated AM Policy Association Termination
 
+' Used
+'   TS23502_UEInitiated_Deregistration.puml
+'
 @enduml

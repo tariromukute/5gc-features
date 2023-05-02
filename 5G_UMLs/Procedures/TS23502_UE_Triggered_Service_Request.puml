@@ -1,3 +1,75 @@
 @startuml UE Triggered Service Request
 
+!include /home/common.puml
+!include /home/vars/Namf_Communication.puml
+
+' Uses:
+'   TS23502_SM_Policy_Association_Termination.puml
+'   TS23502_SMF_Initiated_SM_Policy_Association_Modification.puml
+
+!$DEFAULT_COLOR = "#gray"
+
+participant UE as UE
+participant "R(AN)" as RAN
+participant "AMF" as AMF
+participant "UPF (new I-UPF)" as IUPF
+participant SMF as SMF
+participant "UPF (old I-UPF)" as OUPF
+participant "UPF (PSA)" as PUPF
+participant PCF as PCF
+participant AUSF as AUSF
+
+!$Nsmf_PDUSession_UpdateSMContext ?= $DEFAULT_COLOR
+
+' Requests go from left to right
+' Responses go from right to left
+UE -> RAN : 1. Service Request
+RAN -> AMF : 2. N2 message (Service Request)
+UE <--> AMF : 3. Authentication/Security
+AMF <--> AUSF : 3. Authentication/Security
+AMF -[$Nsmf_PDUSession_UpdateSMContext]> SMF : Nsmf_PDUSession_UpdateSMContext Request
+
+ref over SMF
+    5. [[file://plantuml.com/TS23502_SM_Policy_Association_Termination.puml UPF Selection]]
+end ref
+
+SMF -> IUPF : 6a. N4 Session Establishment Request
+SMF <- IUPF : 6b. N4 Session Establishment Response
+SMF -> PUPF : 7a. N4 Session Modification Request
+SMF <- PUPF : 7b. N4 Session Modification Response
+PUPF --> IUPF : Downlink data
+SMF -> OUPF : 8a. N4 Session Modification Request
+SMF <- OUPF : 8b. N4 Session Modification Response
+
+' I-UPF is relocated
+OUPF --> IUPF : 9. Buffered DL data forwarding
+' I-UPF is removed
+OUPF --> PUPF : 10. Buffered DL data forwarding
+AMF <[$Nsmf_PDUSession_UpdateSMContext]- SMF : 11. Nsmf_PDUSession_UpdateSMContext Response
+AMF -> RAN : 12. N2 Request
+RAN <-> UE : 13. RRC signalling
+UE --> RAN : 
+RAN --> PUPF : Uplink data (new I-UPF is inserted or relocated)
+UE --> RAN : 
+RAN --> PUPF : Uplink data (I-UPF is removed)
+RAN -> AMF : 14. N2 Request Ack
+AMF -[$Nsmf_PDUSession_UpdateSMContext]> SMF : 15. Nsmf_PDUSession_UpdateSMContext Request
+ref over SMF,UPF
+    16. [[file://TS23502_SMF_Initiated_SM_Policy_Association_Modification.puml SMF initiated SM Policy Association Modification]]
+end ref
+' I-UPF
+SMF -> IUPF : 17a. N4 Session Modification Request
+SMF <- IUPF : 17b. N4 Session Modification Response
+IUPF --> UE : Downlink data
+' No I-UPF
+SMF -> PUPF : 18a. N4 Session Modification Request
+SMF <- PUPF : 18b. N4 Session Modification Response
+PUPF --> UE : Downlink data
+AMF <[$Nsmf_PDUSession_UpdateSMContext]- SMF : 19. Nsmf_PDUSession_UpdateSMContext Response
+SMF -> IUPF : 20a. N4 Session Modification Request
+SMF <- IUPF : 20b. N4 Session Modification Response
+SMF -> PUPF : 21a. N4 Session Modification Request
+SMF <- PUPF : 21b. N4 Session Modification Response
+SMF -> OUPF : 22a. N4 Session Modification Request or N4 Session Release Request
+SMF <- OUPF : 22b. N4 Session Modification Response or N4 Session Release Response
 @enduml

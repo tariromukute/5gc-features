@@ -3,6 +3,8 @@
 !include /home/common.puml
 !include /home/vars/Namf_Communication.puml
 
+' Uses:
+'
 !$DEFAULT_COLOR = "#gray"
 
 participant UE as UE

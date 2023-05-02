@@ -1,2 +1,3 @@
 TS23502_Registration
 TS23502_UEInitiated_Deregistration
+TS23502_UE_Triggered_Service_Request
