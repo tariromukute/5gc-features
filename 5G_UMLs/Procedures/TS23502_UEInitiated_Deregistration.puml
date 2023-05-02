@@ -1,3 +1,45 @@
 @startuml UE-initiated Deregistration
 
+!include /home/common.puml
+!include /home/vars/Namf_Communication.puml
+
+!$DEFAULT_COLOR = "#gray"
+
+participant UE as UE
+participant "R(AN)" as RAN
+participant "AMF" as AMF
+participant PCF as PCF
+participant SMF as SMF
+participant UPF as UPF
+participant UDM as UDM
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Nsmf_PDUSession_ReleaseSMContext ?= $DEFAULT_COLOR
+!$Nudm_UECM_Deregistration ?= $DEFAULT_COLOR
+!$Nudm_SDM_Unsubscribe ?= $DEFAULT_COLOR
+
+' Requests go from left to right
+' Responses go from right to left
+UE -> AMF : Deregistration Request
+AMF -[$Nsmf_PDUSession_ReleaseSMContext]-> SMF : 2. Nsmf_PDUSession_ReleaseSMContext Request 
+SMF --> UPF : 3a. N4 Session Release Request
+SMF <-- UPF : 3b. N4 Session Release Response 
+AMF <-[$Nsmf_PDUSession_ReleaseSMContext]- SMF : 4. Nsmf_PDUSession_ReleaseSMContext Response
+
+ref over PCF,SMF
+    5a. [[file://plantuml.com/TS23502_SM_Policy_Association_Termination.puml SM Policy Association Termination]]
+end ref
+
+SMF -[$Nudm_SDM_Unsubscribe]-> UDM : 5b. Nudm_SDM_Unsubscribe
+SMF <-[$Nudm_SDM_Unsubscribe]- UDM
+SMF -[$Nudm_UECM_Deregistration]-> UDM : 5c. Nudm_UECM_Deregistration
+SMF <-[$Nudm_UECM_Deregistration]- UDM
+
+ref over AMF,PCF
+    6. [[file://plantuml.com/TS23502_AMF_Initiated_AM_Policy_Association_Termination.puml AMF-initiated AM Policy Association Termination]]
+end ref
+
+AMF -> UE : 7. Deregistration Accept
+UE <->RAN : 8. Signalling Connection Release
+RAN <-> AMF : 8. Signalling Connection Release
 @enduml

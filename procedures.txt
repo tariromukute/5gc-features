@@ -1,0 +1,2 @@
+TS23502_Registration
+TS23502_UEInitiated_Deregistration
