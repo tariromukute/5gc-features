@@ -1,13 +1,14 @@
 @startuml SMF initiated SM Policy Association Modification
 
+!include /home/common.puml
+!$Npcf_SMPolicyControl = %load_json("/home/vars/Npcf_SMPolicyControl.json")
+
 ' Used by:
 '   TS23502_UE_Triggered_Service_Request.puml
 '   TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml
 
 ' Uses:
 '   TS23502_Initial_Spending_Limit_Report_Retrieval.puml
-
-!$DEFAULT_COLOR = "#gray"
 
 participant AMF as AMF
 participant UPF as UPF
@@ -18,7 +19,7 @@ participant AF as AF
 participant CHF as CHF
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Npcf_SMPolicyControl_Update ?= $DEFAULT_COLOR
+!$Npcf_SMPolicyControl_Update ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_Update)
 
 SMF -[$Npcf_SMPolicyControl_Update]> PCF : 1. Npcf_SMPolicyControl_Update request
 

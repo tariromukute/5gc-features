@@ -1,13 +1,11 @@
 @startuml UE Triggered Service Request
 
 !include /home/common.puml
-!include /home/vars/Namf_Communication.puml
+!$Nsmf_PDUSession = %load_json("/home/vars/Nsmf_PDUSession.json")
 
 ' Uses:
 '   TS23502_SM_Policy_Association_Termination.puml
 '   TS23502_SMF_Initiated_SM_Policy_Association_Modification.puml
-
-!$DEFAULT_COLOR = "#gray"
 
 participant UE as UE
 participant "R(AN)" as RAN
@@ -19,7 +17,7 @@ participant "UPF (PSA)" as PUPF
 participant PCF as PCF
 participant AUSF as AUSF
 
-!$Nsmf_PDUSession_UpdateSMContext ?= $DEFAULT_COLOR
+!$Nsmf_PDUSession_UpdateSMContext ?= $color($Nsmf_PDUSession.Nsmf_PDUSession_UpdateSMContext)
 
 ' Requests go from left to right
 ' Responses go from right to left

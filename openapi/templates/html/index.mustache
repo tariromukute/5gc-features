@@ -44,26 +44,20 @@
       }
 
       function generateJSON() {
-        var checklist = [];
+        var checklist = {};
         var items = document.getElementsByTagName('li');
 
-        var variables = "";
-        variables += "@startuml\n"
         for (var i = 0; i < items.length; i++) {
           var checkbox = items[i].querySelector('input[type="checkbox"]');
           var label = "{{appName}}_" + capitalizeFirstLetter(checkbox.name.trim());
-          var value = checkbox.checked ? "#green" : "#gray";
+          var value = checkbox.checked;
 
-          var item = {label: label, value: value};
-          checklist.push(item);
-          variables += "!$" + label + " = \"" + value + "\"\n";
+          checklist[label] = value;
         }
-        variables += "@enduml\n"
         var jsonString = JSON.stringify(checklist);
         
         // create a new blob object containing the JSON data
-        // var blob = new Blob([jsonString], {type: "application/json"});
-        var blob = new Blob([variables], {type: "application/text"});
+        var blob = new Blob([jsonString], {type: "application/json"});
         
         // create a new URL for the blob object
         var url = URL.createObjectURL(blob);
@@ -71,7 +65,7 @@
         // create a new link element
         var link = document.createElement("a");
         link.href = url;
-        link.download = "{{{appName}}}.puml";
+        link.download = "{{{appName}}}.json";
         
         // simulate a click on the link to trigger the download
         document.body.appendChild(link);

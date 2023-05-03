@@ -49,6 +49,7 @@ docker run --rm \
 ```
 
 ```bash
+#-Dplantuml.include.path="c:/mydir"
 docker run --rm \
   -v ${PWD}/5G_UMLs/Procedures:/home tariromukute/plantuml /home/TS23502_Registration.puml
 ```

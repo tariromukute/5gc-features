@@ -1,9 +1,11 @@
 @startuml PDU Session Establishment authentication or authorization by a DN-AAA server
 
+!include /home/common.puml
+!$Namf_Communication = %load_json("/home/vars/Namf_Communication.json")
+!$Nsmf_PDUSession = %load_json("/home/vars/Nsmf_PDUSession.json")
+
 ' Used by:
 '   TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml
-
-!$DEFAULT_COLOR = "#gray"
 
 participant UE as UE
 participant "R(AN)" as RAN
@@ -13,8 +15,8 @@ participant UPF as UPF
 participant DN as DN
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Namf_Communication_N1N2MessageTransfer ?= $DEFAULT_COLOR
-!$Nsmf_PDUSession_UpdateSMContext ?= $DEFAULT_COLOR
+!$Namf_Communication_N1N2MessageTransfer ?= $color($Namf_Communication.Namf_Communication_N1N2MessageTransfer)
+!$Nsmf_PDUSession_UpdateSMContext ?= $color($Nsmf_PDUSession.Nsmf_PDUSession_UpdateSMContext)
 
 SMF <--> UPF : 1. N4 Session Establishment
 SMF -> DN : 2. Authentication/Athorization Request

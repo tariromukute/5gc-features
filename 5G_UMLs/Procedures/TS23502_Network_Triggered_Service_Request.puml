@@ -1,13 +1,10 @@
 @startuml Network Triggered Service Request
 
 !include /home/common.puml
-' TODO: include pcf services variables
+!$Namf_Communication = %load_json("/home/vars/Namf_Communication.json")
 
 ' Uses:
 '   TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml
-
-
-!$DEFAULT_COLOR = "#gray"
 
 participant UE as UE
 participant "R(AN)" as RAN
@@ -17,8 +14,8 @@ participant UPF as UPF
 participant DN as DN
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Namf_Communication_N1N2MessageTransfer ?= $DEFAULT_COLOR
-!$Namf_Communication_N1N2TransferFailure ?= $DEFAULT_COLOR
+!$Namf_Communication_N1N2MessageTransfer ?= $color($Namf_Communication.Namf_Communication_N1N2MessageTransfer)
+!$Namf_Communication_N1N2TransferFailure ?= $color($Namf_Communication.Namf_Communication_N1N2TransferFailure)
 
 DN --> UPF : 1. Downlink data
 UPF --> SMF : 2a. Data Modification
@@ -28,7 +25,7 @@ SMF -[$Namf_Communication_N1N2MessageTransfer]-> AMF : 3a. Namf_Communication_N1
 SMF <-[$Namf_Communication_N1N2MessageTransfer]- AMF : 3b. Namf_Communication_N1N2MessageTransfer Response
 SMF --> UPF : 3c. Failure indication
 ref over UE,RAN,AMF
-    4a. UP reactivation (Conncted)
+    4a. UP reactivation (Connected)
 end ref
 AMF --> RAN : 4b. Paging
 RAN --> UE : 4b. Paging

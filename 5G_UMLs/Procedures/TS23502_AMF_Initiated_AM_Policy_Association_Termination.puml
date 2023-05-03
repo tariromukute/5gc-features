@@ -1,20 +1,18 @@
 @startuml AMF-initiated AM Policy Association Termination
 
 !include /home/common.puml
-' TODO: include pcf services variables
+!$Npcf_AMPolicyControl = %load_json("/home/vars/Npcf_AMPolicyControl.json")
 
 ' Used
 '   TS23502_UEInitiated_Deregistration.puml
 '   TS23502_NetworkInitiated_Deregistration.puml
-
-!$DEFAULT_COLOR = "#gray"
 
 participant AMF as AMF
 participant "V-PCF" as VPCF
 participant "H-PCF" as HPCF
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Npcf_AMPolicyControl_Delete ?= $DEFAULT_COLOR
+!$Npcf_AMPolicyControl_Delete ?= $color($Npcf_AMPolicyControl.Npcf_AMPolicyControl_Delete)
 
 note over AMF
     1. Decision to terminate the Policy Association

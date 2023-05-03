@@ -1,5 +1,18 @@
 @startuml Common
 
 skinparam SequenceArrowThickness 3
+!$SupportedColor = "#green"
+!$UnsupportedColor = "#red"
+!$NotPresent = "#gray"
+
+!function $color($operation)
+!if ($operation == true)
+    !return $SupportedColor
+!elseif ($operation == false)
+    !return $UnsupportedColor
+!else
+    !return $NotPresent
+!endif
+!endfunction
 
 @enduml

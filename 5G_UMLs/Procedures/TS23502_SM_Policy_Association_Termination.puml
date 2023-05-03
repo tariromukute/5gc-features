@@ -1,13 +1,12 @@
 @startuml SM Policy Association Termination
 
 !include /home/common.puml
-' TODO: include pcf services variables
+!$Npcf_SMPolicyControl = %load_json("/home/vars/Npcf_SMPolicyControl.json")
+!$Nudr_DM = %load_json("/home/vars/Nudr_DM.json")
 
 ' Used by:
 '   TS23502_UEInitiated_Deregistration.puml
 '   TS23502_UE_Triggered_Service_Request.puml
-
-!$DEFAULT_COLOR = "#gray"
 
 participant AMF as AMF
 participant UPF as UPF
@@ -17,10 +16,9 @@ participant UDR as UDR
 participant CHF as CHF
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Npcf_SMPolicyControl_UpdateNotify ?= $DEFAULT_COLOR
-!$Npcf_SMPolicyControl_Delete ?= $DEFAULT_COLOR
-!$Nudr_DM_Unsubscribe ?= $DEFAULT_COLOR
-!$Nchf_SpendingLimitControl ?= DEFAULT_COLOR
+!$Npcf_SMPolicyControl_UpdateNotify ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_Update)
+!$Npcf_SMPolicyControl_Delete ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_Update)
+!$Nudr_DM_Unsubscribe ?= $color($Nudr_DM.Npcf_SMPolicyControl_Update)
 
 PCF -[$Npcf_SMPolicyControl_UpdateNotify]-> SMF : 1a. Npcf_SMPolicyControl_UpdateNotify
 PCF <-[$Npcf_SMPolicyControl_UpdateNotify]- SMF : 1b. Npcf_SMPolicyControl_UpdateNotify response
