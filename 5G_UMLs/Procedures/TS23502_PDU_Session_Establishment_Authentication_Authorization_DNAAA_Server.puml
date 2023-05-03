@@ -1,3 +1,34 @@
-@startuml PDU Session Establishment authentication/authorization by a DN-AAA server
+@startuml PDU Session Establishment authentication or authorization by a DN-AAA server
 
+' Used by:
+'   TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml
+
+!$DEFAULT_COLOR = "#gray"
+
+participant UE as UE
+participant "R(AN)" as RAN
+participant AMF as AMF
+participant SMF as SMF
+participant UPF as UPF
+participant DN as DN
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Namf_Communication_N1N2MessageTransfer ?= $DEFAULT_COLOR
+!$Nsmf_PDUSession_UpdateSMContext ?= $DEFAULT_COLOR
+
+SMF <--> UPF : 1. N4 Session Establishment
+SMF -> DN : 2. Authentication/Athorization Request
+SMF <- DN : 3a. Authentication/Athorization Response
+SMF -[$Namf_Communication_N1N2MessageTransfer]> AMF : 3b. Namf_Communication_N1N2MessageTransfer
+SMF <[$Namf_Communication_N1N2MessageTransfer]- AMF
+AMF -> UE : 3c. NAS SM Transport (Authentication Message)
+AMF <- UE : 3d. NAS SM Transport (Authentication Message)
+AMF -[$Nsmf_PDUSession_UpdateSMContext]> SMF : 3c. Nsmf_PDUSession_UpdateSMContext (N1 SM Message)
+AMF <[$Nsmf_PDUSession_UpdateSMContext]- SMF
+SMF -> DN : 3f. Authentication/Athorization Request
+SMF <- DN : 4. Authentication/Athorization Response
+ref over UE,RAN,AMF,SMF,UPF,DN
+    5. Continuation of PDU session establishment as in Figure 4.3.2.2.1-1 or 4.3.2.2.2-1 up to completion of PDU session establishment
+end ref
+SMF --> DN : 6. Notification of IP Address allocation
 @enduml

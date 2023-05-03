@@ -1,3 +1,26 @@
 @startuml SM Policy Association Establishment
 
+' Used by:
+'   TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml
+
+!$DEFAULT_COLOR = "#gray"
+
+participant AMF as AMF
+participant "H-PCF" as HPCF
+participant UDR as UDR
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Nudr_DM_Notify ?= $DEFAULT_COLOR
+!$Npcf_AMPolicyControl_UpdateNotify ?= $DEFAULT_COLOR
+
+note over UDR
+    1. Plociy Data Removed
+end note
+UDR -[$Nudr_DM_Notify]-> HPCF : 2. Nudr_DM_Notify Request
+UDR <-[$Nudr_DM_Notify]- HPCF : 3. Nudr_DM_Notify Response
+HPCF -[$Npcf_AMPolicyControl_UpdateNotify]-> AMF : 4. Npcf_AMPolicyControl_UpdateNotify Request
+HPCF <-[$Npcf_AMPolicyControl_UpdateNotify]- AMF : 5. Npcf_AMPolicyControl_UpdateNotify Response
+note over AMF
+    6. Removes the Access and Mobility Control Policy
+end note
 @enduml

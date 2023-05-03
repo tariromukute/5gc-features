@@ -1,0 +1,6 @@
+<map id="UE-requested PDU Session Establishment for non-roaming and roaming with local breakout_map" name="UE-requested PDU Session Establishment for non-roaming and roaming with local breakout_map">
+<area shape="rect" id="id1" href="file://TS23502_SM_Policy_Association_Establishment.puml" title="file://TS23502_SM_Policy_Association_Establishment.puml" alt="" coords="1445,320,1466,334"/>
+<area shape="rect" id="id2" href="file://TS23502_SMF_Initiated_SM_Policy_Association_Modification.puml" title="file://TS23502_SMF_Initiated_SM_Policy_Association_Modification.puml" alt="" coords="1787,320,1808,334"/>
+<area shape="rect" id="id3" href="file://TS23502_SMF_Initiated_SM_Policy_Association_Modification.puml" title="file://TS23502_SMF_Initiated_SM_Policy_Association_Modification.puml" alt="" coords="1647,400,1668,414"/>
+<area shape="rect" id="id4" href="file://TS23502_PDU_Session_Establishment_Authentication_Authorization_DNAAA_Server.puml" title="file://TS23502_PDU_Session_Establishment_Authentication_Authorization_DNAAA_Server.puml" alt="" coords="1090,241,1111,255"/>
+</map>

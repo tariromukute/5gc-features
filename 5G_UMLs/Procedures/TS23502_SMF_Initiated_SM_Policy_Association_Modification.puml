@@ -2,6 +2,7 @@
 
 ' Used by:
 '   TS23502_UE_Triggered_Service_Request.puml
+'   TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml
 
 !$DEFAULT_COLOR = "#gray"
 

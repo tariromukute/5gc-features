@@ -71,7 +71,7 @@ The list of Procedures
 - [ ] Nudm_EventExposure_Subscribe_Notify_Operations
 - [ ] PCF_Initiated_AM_Policy_Association_Termination
 - [ ] PCF_Initiated_SM_Policy_Association_Modification
-- [ ] PDU_Session_Establishment_Authentication_Authorization_DNAAA_Server
+- [x] PDU_Session_Establishment_Authentication_Authorization_DNAAA_Server
 - [ ] PDU_Session_Establishment_Untrusted_Non3GPP_Access
 - [ ] PFD_Management_UPF
 - [ ] PFD_Retrieval_SMF
@@ -100,14 +100,14 @@ The list of Procedures
 - [ ] SMF_Selection_HomeRouted_Roaming_Option_1
 - [ ] SMF_Selection_HomeRouted_Roaming_Option_2
 - [ ] SMF_Selection_NonRoaming_And_Roaming_With_Local_Breakout
-- [ ] SM_Policy_Association_Establishment
+- [x] SM_Policy_Association_Establishment
 - [x] SM_Policy_Association_Termination
 - [ ] Simultaneous_Change_Branching_Point_ULCL_Additional_PSA_PDU_Session
 - [ ] Spending_Limit_Report
 - [ ] Transferring_AF_Request_Targeting_Individual_UE_Address_To_elevant_PCF
 - [x] UEInitiated_Deregistration
 - [ ] UERequested_PDU_Session_Establishment_HomeRouted_Roaming
-- [ ] UERequested_PDU_Session_Establishment__NonRoaming_And_Roaming_With_Local_Breakout
+- [ ] UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout
 - [ ] UE_Activity
 - [ ] UE_Assisted_UE_Based_Positioning_Procedure
 - [ ] UE_Capability_Match_Request
@@ -123,6 +123,6 @@ The list of Procedures
 - [x] UE_Triggered_Service_Request
 - [ ] UPF_Initiated_N4_Association_Release
 - [ ] UPF_Initiated_N4_Association_Update
-- [ ] Xn_Based_Inter_NGRAN_Handover_With_ntermediate_UPF_ReAllocation
+- [ ] Xn_Based_Inter_NGRAN_Handover_With_Intermediate_UPF_ReAllocation
 - [ ] Xn_Based_Inter_NGRAN_andover_With_Insertion_Intermediate_UPF
-- [ ] Xn_Based_nter_NGRAN_Handover_ithout_UPF_ReAllocation
+- [ ] Xn_Based_Inter_NGRAN_Handover_Without_UPF_ReAllocation
