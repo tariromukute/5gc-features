@@ -4,6 +4,9 @@
 '   TS23502_UE_Triggered_Service_Request.puml
 '   TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml
 
+' Uses:
+'   TS23502_Initial_Spending_Limit_Report_Retrieval.puml
+
 !$DEFAULT_COLOR = "#gray"
 
 participant AMF as AMF
@@ -20,7 +23,7 @@ participant CHF as CHF
 SMF -[$Npcf_SMPolicyControl_Update]> PCF : 1. Npcf_SMPolicyControl_Update request
 
 ref over PCF,UDR,AF,CHF
-    2. Spending Limit Report Retrieval
+    2. Spending Limit Report Retrieval [[file://TS23502_Initial_Spending_Limit_Report_Retrieval.puml link]]
 end ref
 
 note over PCF

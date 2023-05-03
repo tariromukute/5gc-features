@@ -5,7 +5,7 @@
 
 ' Used
 '   TS23502_UEInitiated_Deregistration.puml
-'
+'   TS23502_NetworkInitiated_Deregistration.puml
 
 !$DEFAULT_COLOR = "#gray"
 

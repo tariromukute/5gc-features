@@ -1,0 +1,4 @@
+<map id="Network-initiated Deregistration_map" name="Network-initiated Deregistration_map">
+<area shape="rect" id="id1" href="file://TS23502_AMF_Initiated_AM_Policy_Association_Termination.puml" title="file://TS23502_AMF_Initiated_AM_Policy_Association_Termination.puml" alt="" coords="783,226,804,240"/>
+<area shape="rect" id="id2" href="file://TS23502_UEInitiated_Deregistration.puml" title="file://TS23502_UEInitiated_Deregistration.puml" alt="" coords="832,182,853,196"/>
+</map>

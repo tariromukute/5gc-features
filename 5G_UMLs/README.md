@@ -57,11 +57,11 @@ The list of Procedures
 - [ ] NGRAN_Location_Reporting
 - [ ] Namf_EventExposure_Subscribe_Notify_Operations
 - [ ] Negotiation_Future_Background_Data_Transfer
-- [ ] NetworkInitiated_Deregistration
+- [x] NetworkInitiated_Deregistration
 - [ ] Network_Assisted_Positioning_Procedure
 - [ ] Network_Data_Analytics_Request
 - [ ] Network_Data_Analytics_Subscribe_Unsubscribe
-- [ ] Network_Triggered_Service_Request
+- [x] Network_Triggered_Service_Request
 - [ ] Nnef_EventExposure_Subscribe_Notify_Operations
 - [ ] Nnef_ParameterProvision_Update_Request_Response_Operations
 - [ ] Nnrf_NF_Deregistration

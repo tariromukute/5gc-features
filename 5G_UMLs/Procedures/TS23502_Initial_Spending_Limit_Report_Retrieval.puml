@@ -1,3 +1,19 @@
 @startuml Initial Spending Limit Report Retrieval
 
+' Used by:
+'   TS23502_SM_Policy_Association_Termination.puml
+
+!$DEFAULT_COLOR = "#gray"
+
+participant PCF as PCF
+participant CHF as CHF
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Nchf_SpendingLimitControl_Subscribe ?= $DEFAULT_COLOR
+
+note over PCF
+    1. Policy decision depends on policy counter status
+end note
+PCF -[$Nchf_SpendingLimitControl_Subscribe]-> CHF : 2. Nchf_SpendingLimitControl_Subscribe
+PCF <-[$Nchf_SpendingLimitControl_Subscribe]- CHF : 3. Nchf_SpendingLimitControl_Subscribe
 @enduml

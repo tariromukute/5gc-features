@@ -1,3 +1,37 @@
 @startuml Network-initiated Deregistration
 
+!include /home/common.puml
+' TODO: include pcf services variables
+
+' Uses:
+'   TS23502_AMF_Initiated_AM_Policy_Association_Termination.puml
+
+
+!$DEFAULT_COLOR = "#gray"
+
+participant UE as UE
+participant "R(AN)" as RAN
+participant AMF as AMF
+participant PCF as PCF
+participant SMF as SMF
+participant UPF as UPF
+participant UDM as UDM
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Nudm_UECM_DeregistrationNotification ?= $DEFAULT_COLOR
+!$Nudm_SDM_Unsubscribe ?= $DEFAULT_COLOR
+
+UDM -[$Nudm_UECM_DeregistrationNotification]-> AMF : 1. Nudm_UECM_DeregistrationNotification
+AMF --> UE : 2. De-registration Reques
+UDM <-[$Nudm_UECM_DeregistrationNotification]- AMF : 3. Nudm_UECM_DeregistrationNotification Ack
+AMF -[$Nudm_SDM_Unsubscribe]-> UDM : 3a. Nudm_SDM_Unsubscribe
+ref over AMF,PCF,SMF,UPF
+    4. Step 2 ~ step 5 of UE initiated De-registration [[file://TS23502_UEInitiated_Deregistration.puml link]]
+end ref
+ref over AMF,PCF
+    5. AMF-initiated AM Policy Association Termination [[file://TS23502_AMF_Initiated_AM_Policy_Association_Termination.puml link]]
+end ref
+UE --> AMF : De-registration Accept
+AMF <--> RAN : 7. Signalling Connection Release
+RAN <--> UE : 7. Signalling Connection Release
 @enduml

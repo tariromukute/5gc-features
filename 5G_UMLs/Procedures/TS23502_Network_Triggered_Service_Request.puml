@@ -1,3 +1,43 @@
 @startuml Network Triggered Service Request
 
+!include /home/common.puml
+' TODO: include pcf services variables
+
+' Uses:
+'   TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml
+
+
+!$DEFAULT_COLOR = "#gray"
+
+participant UE as UE
+participant "R(AN)" as RAN
+participant AMF as AMF
+participant SMF as SMF
+participant UPF as UPF
+participant DN as DN
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Namf_Communication_N1N2MessageTransfer ?= $DEFAULT_COLOR
+!$Namf_Communication_N1N2TransferFailure ?= $DEFAULT_COLOR
+
+DN --> UPF : 1. Downlink data
+UPF --> SMF : 2a. Data Modification
+UPF <-- SMF : 2b. Data Modification Ack
+UPF --> SMF : 2c. Downlink data
+SMF -[$Namf_Communication_N1N2MessageTransfer]-> AMF : 3a. Namf_Communication_N1N2MessageTransfer
+SMF <-[$Namf_Communication_N1N2MessageTransfer]- AMF : 3b. Namf_Communication_N1N2MessageTransfer Response
+SMF --> UPF : 3c. Failure indication
+ref over UE,RAN,AMF
+    4a. UP reactivation (Conncted)
+end ref
+AMF --> RAN : 4b. Paging
+RAN --> UE : 4b. Paging
+AMF --> UE : 4c. NAS Notification
+AMF -[$Namf_Communication_N1N2TransferFailure]-> SMF : 5. Namf_Communication_N1N2TransferFailure Notification
+ref over UE,RAN,AMF,SMF,UPF
+    6. Service Request Procedure [[file://TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml link]]
+end ref
+UPF --> RAN : 7. Downlink data
+RAN --> UE : 7. Downlink data
+
 @enduml
