@@ -5,7 +5,7 @@ The list of Procedures
 - [ ] 5GC_Network_Induced_Location_Request_UE
 - [ ] 5GS_EPS_Handover_SingleRegistration_Mode_With_N26_Interface
 - [ ] 5GS_EPS_Idle_Mode_Mobility_N26_nterface
-- [ ] AMF_Initiated_AM_Policy_Association_Termination
+- [x] AMF_Initiated_AM_Policy_Association_Termination
 - [ ] AM_Policy_Association_Establishment_New_Selected_PCF
 - [ ] AM_Policy_Association_Modification_Initiated_AMF
 - [ ] AM_Policy_Association_Modification_Initiated_PCF
@@ -94,18 +94,18 @@ The list of Procedures
 - [ ] Removal_Additional_PDU_Session_Anchor_Branching_Point_ULCL
 - [ ] SMF_Initiated_N4_Association_Release
 - [ ] SMF_Initiated_N4_Association_Update
-- [ ] SMF_Initiated_SM_Policy_Association_Modification
+- [x] SMF_Initiated_SM_Policy_Association_Modification
 - [ ] SMF_Pause_Charging
 - [ ] SMF_Provisioning_UPF_Instances_Using_NRF
 - [ ] SMF_Selection_HomeRouted_Roaming_Option_1
 - [ ] SMF_Selection_HomeRouted_Roaming_Option_2
 - [ ] SMF_Selection_NonRoaming_And_Roaming_With_Local_Breakout
 - [ ] SM_Policy_Association_Establishment
-- [ ] SM_Policy_Association_Termination
+- [x] SM_Policy_Association_Termination
 - [ ] Simultaneous_Change_Branching_Point_ULCL_Additional_PSA_PDU_Session
 - [ ] Spending_Limit_Report
 - [ ] Transferring_AF_Request_Targeting_Individual_UE_Address_To_elevant_PCF
-- [ ] UEInitiated_Deregistration
+- [x] UEInitiated_Deregistration
 - [ ] UERequested_PDU_Session_Establishment_HomeRouted_Roaming
 - [ ] UERequested_PDU_Session_Establishment__NonRoaming_And_Roaming_With_Local_Breakout
 - [ ] UE_Activity
@@ -120,7 +120,7 @@ The list of Procedures
 - [ ] UE_Network_Requested_PDU_Session_Release_Local_Breakout
 - [ ] UE_Reachability_Notification_Request
 - [ ] UE_Requested_PDU_Session_Release_Untrusted_Non3GPP_Access
-- [ ] UE_Triggered_Service_Request
+- [x] UE_Triggered_Service_Request
 - [ ] UPF_Initiated_N4_Association_Release
 - [ ] UPF_Initiated_N4_Association_Update
 - [ ] Xn_Based_Inter_NGRAN_Handover_With_ntermediate_UPF_ReAllocation

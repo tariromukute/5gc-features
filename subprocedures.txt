@@ -1,0 +1,3 @@
+TS23502_SM_Policy_Association_Termination
+TS23502_SMF_Initiated_SM_Policy_Association_Modification
+TS23502_AMF_Initiated_AM_Policy_Association_Termination

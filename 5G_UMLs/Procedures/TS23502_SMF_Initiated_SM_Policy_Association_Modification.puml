@@ -1,6 +1,31 @@
 @startuml SMF initiated SM Policy Association Modification
 
 ' Used by:
-'   TS23502_SMF_Initiated_SM_Policy_Association_Modification.puml
+'   TS23502_UE_Triggered_Service_Request.puml
+
+!$DEFAULT_COLOR = "#gray"
+
+participant AMF as AMF
+participant UPF as UPF
+participant SMF as SMF
+participant PCF as PCF
+participant UDR as UDR
+participant AF as AF
+participant CHF as CHF
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Npcf_SMPolicyControl_Update ?= $DEFAULT_COLOR
+
+SMF -[$Npcf_SMPolicyControl_Update]> PCF : 1. Npcf_SMPolicyControl_Update request
+
+ref over PCF,UDR,AF,CHF
+    2. Spending Limit Report Retrieval
+end ref
+
+note over PCF
+    3. Policy Decision
+end note
+
+SMF <[$Npcf_SMPolicyControl_Update]- PCF : 4. Npcf_SMPolicyControl_Update response
 
 @enduml

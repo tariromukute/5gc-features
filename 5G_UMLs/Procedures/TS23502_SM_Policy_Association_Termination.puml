@@ -1,7 +1,49 @@
 @startuml SM Policy Association Termination
 
+!include /home/common.puml
+' TODO: include pcf services variables
+
 ' Used by:
 '   TS23502_UEInitiated_Deregistration.puml
 '   TS23502_UE_Triggered_Service_Request.puml
+
+!$DEFAULT_COLOR = "#gray"
+
+participant AMF as AMF
+participant UPF as UPF
+participant SMF as SMF
+participant PCF as PCF
+participant UDR as UDR
+participant CHF as CHF
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Npcf_SMPolicyControl_UpdateNotify ?= $DEFAULT_COLOR
+!$Npcf_SMPolicyControl_Delete ?= $DEFAULT_COLOR
+!$Nudr_DM_Unsubscribe ?= $DEFAULT_COLOR
+!$Nchf_SpendingLimitControl ?= DEFAULT_COLOR
+
+PCF -[$Npcf_SMPolicyControl_UpdateNotify]-> SMF : 1a. Npcf_SMPolicyControl_UpdateNotify
+PCF <-[$Npcf_SMPolicyControl_UpdateNotify]- SMF : 1b. Npcf_SMPolicyControl_UpdateNotify response
+SMF -[$Npcf_SMPolicyControl_Delete]-> PCF : 2. Npcf_SMPolicyControl_Delete
+
+note over PCF
+    3. Identify what PCC Rules are affected
+end note
+
+note over SMF
+    4. Remove all PCC Rules
+end note
+
+note over PCF
+    5. See 23.203 clause 7.3.1 steps 6-7
+end note
+
+ref over PCF,UDR,CHF
+    6. Nchf_SpendingLimitControl unsubscribe
+end ref
+
+SMF <-[$Npcf_SMPolicyControl_Delete]- PCF : 7. Npcf_SMPolicyControl_Delete response
+PCF -[$Nudr_DM_Unsubscribe]-> UDR : 8. Nudr_DM_Unsubscribe
+PCF <-[$Nudr_DM_Unsubscribe]- UDR
 
 @enduml
