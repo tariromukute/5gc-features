@@ -1,6 +1,6 @@
 @startuml SM Policy Association Establishment
 
-!include /home/common.puml
+!include /home/puml/common.puml
 !$Nudr_DM = %load_json("/home/vars/Nudr_DM.json")
 !$Npcf_AMPolicyControl = %load_json("/home/vars/Npcf_AMPolicyControl.json")
 

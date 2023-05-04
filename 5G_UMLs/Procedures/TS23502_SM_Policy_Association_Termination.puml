@@ -1,6 +1,6 @@
 @startuml SM Policy Association Termination
 
-!include /home/common.puml
+!include /home/puml/common.puml
 !startsub ALL
 !$Npcf_SMPolicyControl = %load_json("/home/vars/Npcf_SMPolicyControl.json")
 !$Nudr_DM = %load_json("/home/vars/Nudr_DM.json")

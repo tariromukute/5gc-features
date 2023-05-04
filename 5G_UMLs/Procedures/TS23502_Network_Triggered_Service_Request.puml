@@ -1,6 +1,6 @@
 @startuml Network Triggered Service Request
 
-!include /home/common.puml
+!include /home/puml/common.puml
 !$Namf_Communication = %load_json("/home/vars/Namf_Communication.json")
 
 ' Uses:

@@ -1,6 +1,6 @@
 @startuml Initial Spending Limit Report Retrieval
 
-!include /home/common.puml
+!include /home/puml/common.puml
 !$Nchf_SpendingLimitControl = %load_json("/home/vars/Nchf_SpendingLimitControl.json")
 
 ' Used by:

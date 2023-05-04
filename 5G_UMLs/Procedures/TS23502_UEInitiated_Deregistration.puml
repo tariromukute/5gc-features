@@ -1,6 +1,6 @@
 @startuml UE-initiated Deregistration
 
-!include /home/common.puml
+!include /home/puml/common.puml
 !$Nsmf_PDUSession = %load_json("/home/vars/Nsmf_PDUSession.json")
 !$Nudm_UECM = %load_json("/home/vars/Nudm_UECM.json")
 !$Nudm_SDM = %load_json("/home/vars/Nudm_SDM.json")
@@ -34,7 +34,7 @@ SMF <-- UPF : 3b. N4 Session Release Response
 AMF <-[$Nsmf_PDUSession_ReleaseSMContext]- SMF : 4. Nsmf_PDUSession_ReleaseSMContext Response
 
 group SM Policy Association Termination
-!includesub /home/TS23502_SM_Policy_Association_Termination.puml!ALL
+!includesub /home/puml/TS23502_SM_Policy_Association_Termination.puml!ALL
 end
 
 SMF -[$Nudm_SDM_Unsubscribe]-> UDM : 5b. Nudm_SDM_Unsubscribe
@@ -43,7 +43,7 @@ SMF -[$Nudm_UECM_Deregistration]-> UDM : 5c. Nudm_UECM_Deregistration
 SMF <-[$Nudm_UECM_Deregistration]- UDM
 
 group AMF-initiated AM Policy Association Termination
-!includesub /home/TS23502_AMF_Initiated_AM_Policy_Association_Termination.puml!ALL
+!includesub /home/puml/TS23502_AMF_Initiated_AM_Policy_Association_Termination.puml!ALL
 end
 
 AMF -> UE : 7. Deregistration Accept

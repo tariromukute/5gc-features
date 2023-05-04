@@ -1,6 +1,6 @@
 @startuml AMF-initiated AM Policy Association Termination
 
-!include /home/common.puml
+!include /home/puml/common.puml
 !startsub ALL
 !$Npcf_AMPolicyControl = %load_json("/home/vars/Npcf_AMPolicyControl.json")
 

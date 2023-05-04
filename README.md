@@ -48,10 +48,26 @@ docker run --rm \
   -o /local/out/plantuml
 ```
 
+## Generate Procedure diagrams
+
+The project use [plantuml](https://plantuml.com) to generate the sequence diagrams for 5G Procedures. The sequence diagram are drawn with color codes to show whether the action is supported or not, and whether isn't not specified. The sequence diagrams reads JSON object inventory of the services/operations supported. The operations are derived from the Open API specs. The colors are as following:
+
+- green: operation supported
+- red: operation not supported
+- grey: not specified if supported or not
+- black: operation not part of the Open API specs
+
+**Running app**
+
+In oder to run the app you need docker installed. To change the input or output for the sequence diagram you can change the volume mount binds. e.g., to change the output for the png file change `-v ${PWD}/5G_UMLs/Out:/home/out` to `-v ${PWD}/OUTPUT_FOLDER:/home/out`. You should change the mounts on the host machine and not on docker as the plantuml definition uses the folder names as specified. To process all the files you mount in the `/home/puml` folder on docker replace `/home/puml/TS23502_Registration.puml` with `"/home/puml/*.puml"`
+
 ```bash
-#-Dplantuml.include.path="c:/mydir"
 docker run --rm \
-  -v ${PWD}/5G_UMLs/Procedures:/home tariromukute/plantuml /home/TS23502_Registration.puml
+  -v ${PWD}/5G_UMLs/Procedures:/home/puml \
+  -v ${PWD}/5G_UMLs/Vars:/home/vars \
+  -v ${PWD}/5G_UMLs/Out:/home/out \
+  tariromukute/plantuml /home/puml/TS23502_Registration.puml \
+  -o /home/out/
 ```
 
 Convert xsd files to plantuml

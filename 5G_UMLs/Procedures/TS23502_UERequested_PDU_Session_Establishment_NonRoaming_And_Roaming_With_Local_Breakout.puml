@@ -1,6 +1,6 @@
 @startuml UE-requested PDU Session Establishment for non-roaming and roaming with local breakout
 
-!include /home/common.puml
+!include /home/puml/common.puml
 !$Namf_Communication = %load_json("/home/vars/Namf_Communication.json")
 !$Nsmf_PDUSession = %load_json("/home/vars/Nsmf_PDUSession.json")
 
