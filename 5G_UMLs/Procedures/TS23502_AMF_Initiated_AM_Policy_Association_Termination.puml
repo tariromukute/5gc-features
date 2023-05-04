@@ -1,6 +1,7 @@
 @startuml AMF-initiated AM Policy Association Termination
 
 !include /home/common.puml
+!startsub ALL
 !$Npcf_AMPolicyControl = %load_json("/home/vars/Npcf_AMPolicyControl.json")
 
 ' Used
@@ -24,4 +25,5 @@ AMF <-[$Npcf_AMPolicyControl_Delete]- HPCF : 3. Npcf_AMPolicyControl_Delete resp
 note over AMF
     4. Remove the Access and Mobility Control Policy
 end note
+!endsub
 @enduml
