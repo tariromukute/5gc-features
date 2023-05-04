@@ -1,6 +1,7 @@
 @startuml SM Policy Association Establishment
 
 !include /home/puml/common.puml
+!startsub ALL
 !$Nudr_DM = %load_json("/home/vars/Nudr_DM.json")
 !$Npcf_AMPolicyControl = %load_json("/home/vars/Npcf_AMPolicyControl.json")
 
@@ -25,4 +26,5 @@ HPCF <-[$Npcf_AMPolicyControl_UpdateNotify]- AMF : 5. Npcf_AMPolicyControl_Updat
 note over AMF
     6. Removes the Access and Mobility Control Policy
 end note
+!endsub
 @enduml

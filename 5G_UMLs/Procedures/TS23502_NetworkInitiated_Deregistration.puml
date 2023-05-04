@@ -23,9 +23,13 @@ UDM -[$Nudm_UECM_DeregistrationNotification]-> AMF : 1. Nudm_UECM_Deregistration
 AMF --> UE : 2. De-registration Request
 UDM <-[$Nudm_UECM_DeregistrationNotification]- AMF : 3. Nudm_UECM_DeregistrationNotification Ack
 AMF -[$Nudm_SDM_Unsubscribe]-> UDM : 3a. Nudm_SDM_Unsubscribe
-ref over AMF,PCF,SMF,UPF
-    4. Step 2 ~ step 5 of UE initiated De-registration [[file://TS23502_UEInitiated_Deregistration.puml link]]
-end ref
+' ref over AMF,PCF,SMF,UPF
+'     4. Step 2 ~ step 5 of UE initiated De-registration [[file://TS23502_UEInitiated_Deregistration.puml link]]
+' end ref
+group 4. Step 2 ~ step 5 of UE initiated De-registration
+!includesub /home/puml/TS23502_UEInitiated_Deregistration.puml!VARS
+!includesub /home/puml/TS23502_UEInitiated_Deregistration.puml!STEP2to5
+end
 ref over AMF,PCF
     5. AMF-initiated AM Policy Association Termination [[file://TS23502_AMF_Initiated_AM_Policy_Association_Termination.puml link]]
 end ref

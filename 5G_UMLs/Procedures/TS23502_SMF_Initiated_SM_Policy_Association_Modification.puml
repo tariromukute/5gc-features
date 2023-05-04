@@ -1,6 +1,7 @@
 @startuml SMF initiated SM Policy Association Modification
 
 !include /home/puml/common.puml
+!startsub ALL
 !$Npcf_SMPolicyControl = %load_json("/home/vars/Npcf_SMPolicyControl.json")
 
 ' Used by:
@@ -32,5 +33,5 @@ note over PCF
 end note
 
 SMF <[$Npcf_SMPolicyControl_Update]- PCF : 4. Npcf_SMPolicyControl_Update response
-
+!endsub
 @enduml

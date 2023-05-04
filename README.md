@@ -66,8 +66,8 @@ docker run --rm \
   -v ${PWD}/5G_UMLs/Procedures:/home/puml \
   -v ${PWD}/5G_UMLs/Vars:/home/vars \
   -v ${PWD}/5G_UMLs/Out:/home/out \
-  tariromukute/plantuml /home/puml/TS23502_Registration.puml \
-  -o /home/out/
+  tariromukute/plantuml -o /home/out/ \
+  /home/puml/TS23502_Registration.puml
 ```
 
 Convert xsd files to plantuml

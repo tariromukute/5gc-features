@@ -31,9 +31,9 @@ AMF --> RAN : 4b. Paging
 RAN --> UE : 4b. Paging
 AMF --> UE : 4c. NAS Notification
 AMF -[$Namf_Communication_N1N2TransferFailure]-> SMF : 5. Namf_Communication_N1N2TransferFailure Notification
-ref over UE,RAN,AMF,SMF,UPF
-    6. Service Request Procedure [[file://TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml link]]
-end ref
+group UE-requested PDU Session Establishment for non-roaming and roaming with local breakout
+!includesub /home/puml/TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml!ALL
+end
 UPF --> RAN : 7. Downlink data
 RAN --> UE : 7. Downlink data
 

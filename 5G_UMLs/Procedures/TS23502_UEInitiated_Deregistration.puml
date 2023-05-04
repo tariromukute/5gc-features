@@ -1,10 +1,16 @@
 @startuml UE-initiated Deregistration
 
 !include /home/puml/common.puml
+!startsub VARS
 !$Nsmf_PDUSession = %load_json("/home/vars/Nsmf_PDUSession.json")
 !$Nudm_UECM = %load_json("/home/vars/Nudm_UECM.json")
 !$Nudm_SDM = %load_json("/home/vars/Nudm_SDM.json")
 
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Nsmf_PDUSession_ReleaseSMContext ?= $color($Nsmf_PDUSession.Nsmf_PDUSession_ReleaseSMContext)
+!$Nudm_UECM_Deregistration ?= $color($Nudm_UECM.Nudm_UECM_Deregistration)
+!$Nudm_SDM_Unsubscribe ?= $color($Nudm_SDM.Nudm_SDM_Unsubscribe)
+!endsub
 ' !$Npcf_AMPolicyControl = %load_json("/home/vars/Npcf_AMPolicyControl.json")
 
 ' Uses:
@@ -20,14 +26,10 @@ participant UPF as UPF
 participant UDM as UDM
 ' participant CHF as CHF
 
-' Assign default colors to the Operations is they are not assigned in the vars file
-!$Nsmf_PDUSession_ReleaseSMContext ?= $color($Nsmf_PDUSession.Nsmf_PDUSession_ReleaseSMContext)
-!$Nudm_UECM_Deregistration ?= $color($Nudm_UECM.Nudm_UECM_Deregistration)
-!$Nudm_SDM_Unsubscribe ?= $color($Nudm_SDM.Nudm_SDM_Unsubscribe)
-
 ' Requests go from left to right
 ' Responses go from right to left
-UE -> AMF : Deregistration Request
+UE -> AMF : 1. Deregistration Request
+!startsub STEP2to5
 AMF -[$Nsmf_PDUSession_ReleaseSMContext]-> SMF : 2. Nsmf_PDUSession_ReleaseSMContext Request 
 SMF --> UPF : 3a. N4 Session Release Request
 SMF <-- UPF : 3b. N4 Session Release Response 
@@ -41,8 +43,8 @@ SMF -[$Nudm_SDM_Unsubscribe]-> UDM : 5b. Nudm_SDM_Unsubscribe
 SMF <-[$Nudm_SDM_Unsubscribe]- UDM
 SMF -[$Nudm_UECM_Deregistration]-> UDM : 5c. Nudm_UECM_Deregistration
 SMF <-[$Nudm_UECM_Deregistration]- UDM
-
-group AMF-initiated AM Policy Association Termination
+!endsub
+group 6. AMF-initiated AM Policy Association Termination
 !includesub /home/puml/TS23502_AMF_Initiated_AM_Policy_Association_Termination.puml!ALL
 end
 

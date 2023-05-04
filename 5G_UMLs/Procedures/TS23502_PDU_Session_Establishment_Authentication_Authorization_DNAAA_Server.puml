@@ -1,6 +1,7 @@
 @startuml PDU Session Establishment authentication or authorization by a DN-AAA server
 
 !include /home/puml/common.puml
+!startsub ALL
 !$Namf_Communication = %load_json("/home/vars/Namf_Communication.json")
 !$Nsmf_PDUSession = %load_json("/home/vars/Nsmf_PDUSession.json")
 
@@ -33,4 +34,5 @@ ref over UE,RAN,AMF,SMF,UPF,DN
     5. Continuation of PDU session establishment as in Figure 4.3.2.2.1-1 or 4.3.2.2.2-1 up to completion of PDU session establishment
 end ref
 SMF --> DN : 6. Notification of IP Address allocation
+!endsub
 @enduml

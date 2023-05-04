@@ -27,9 +27,9 @@ UE <--> AMF : 3. Authentication/Security
 AMF <--> AUSF : 3. Authentication/Security
 AMF -[$Nsmf_PDUSession_UpdateSMContext]> SMF : Nsmf_PDUSession_UpdateSMContext Request
 
-ref over SMF
-    5. [[file://plantuml.com/TS23502_SM_Policy_Association_Termination.puml UPF Selection]]
-end ref
+note over SMF
+    5. UPF Selection
+end note
 
 SMF -> IUPF : 6a. N4 Session Establishment Request
 SMF <- IUPF : 6b. N4 Session Establishment Response
@@ -52,9 +52,9 @@ UE --> RAN :
 RAN --> PUPF : Uplink data (I-UPF is removed)
 RAN -> AMF : 14. N2 Request Ack
 AMF -[$Nsmf_PDUSession_UpdateSMContext]> SMF : 15. Nsmf_PDUSession_UpdateSMContext Request
-ref over SMF,UPF
-    16. [[file://TS23502_SMF_Initiated_SM_Policy_Association_Modification.puml SMF initiated SM Policy Association Modification]]
-end ref
+group SMF initiated SM Policy Association Modification
+!includesub /home/puml/TS23502_SMF_Initiated_SM_Policy_Association_Modification.puml!ALL
+end
 ' I-UPF
 SMF -> IUPF : 17a. N4 Session Modification Request
 SMF <- IUPF : 17b. N4 Session Modification Response
