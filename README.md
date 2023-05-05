@@ -70,6 +70,22 @@ docker run --rm \
   /home/puml/TS23502_Registration.puml
 ```
 
+**Drawing diagrams per core network**
+
+In order to draw the UML (Sequence) diagrams per network core we create a seperate folder for each core network. Under each we create two folders:
+- `Vars`: The folder contains the inventory list of the operations per NF or NF service.
+- `Procedures`: This is where we will write the UML diagrams.
+
+We use the `draw.sh` script to draw the procedure diagrams for all procedures in the `procedures.txt` file. We can possibly trigger drawing of all the puml files but some of the procedures are not used standalone, they are 'sub procedures'. See the how to trigger below
+
+```bash
+# Replace <input_dir> with the relative path to the Vars folder e.g., oai-cn5g/Vars
+# Replace <output_dir> with the relative path to the Procedures folder e.g., oai-cn5g/Procedures
+./draw.sh <input_dir> <output_dir>
+```
+
+Created the services list from 3GPP TS 29.531 version 17.7.0 Release 17
+
 Convert xsd files to plantuml
 
 ```bash
