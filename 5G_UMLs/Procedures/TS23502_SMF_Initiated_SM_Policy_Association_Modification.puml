@@ -20,9 +20,9 @@ participant AF as AF
 participant CHF as CHF
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Npcf_SMPolicyControl_Update ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_Update)
+!$Npcf_SMPolicyControl_UpdateSMPolicy ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_UpdateSMPolicy)
 
-SMF -[$Npcf_SMPolicyControl_Update]> PCF : 1. Npcf_SMPolicyControl_Update request
+SMF -[$Npcf_SMPolicyControl_UpdateSMPolicy]> PCF : 1. Npcf_SMPolicyControl_UpdateSMPolicy request
 
 ref over PCF,UDR,AF,CHF
     2. Spending Limit Report Retrieval [[file://TS23502_Initial_Spending_Limit_Report_Retrieval.puml link]]
@@ -32,6 +32,6 @@ note over PCF
     3. Policy Decision
 end note
 
-SMF <[$Npcf_SMPolicyControl_Update]- PCF : 4. Npcf_SMPolicyControl_Update response
+SMF <[$Npcf_SMPolicyControl_UpdateSMPolicy]- PCF : 4. Npcf_SMPolicyControl_UpdateSMPolicy response
 !endsub
 @enduml

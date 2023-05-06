@@ -2,6 +2,10 @@
 
 !include /home/puml/common.puml
 !$Namf_Communication = %load_json("/home/vars/Namf_Communication.json")
+!$Nudm_UECM = %load_json("/home/vars/Nudm_UECM.json")
+!$FgEir_EquipmentIdentityCheck = %load_json("/home/vars/5gEir_EquipmentIdentityCheck.json")
+!$Nudm_SDM = %load_json("/home/vars/Nudm_SDM.json")
+!$Nsmf_PDUSession = %load_json("/home/vars/Nsmf_PDUSession.json")
 
 ' Uses:
 '
@@ -18,22 +22,22 @@ participant AUSF as AUSF
 participant UDM as UDM
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Namf_Communication_UEContextTransfer_Color = $color($Namf_Communication.Namf_Communication_UEContextTransfer)
-!$Namf_Communication_RegistrationStatusUpdate_Color ?= $color($Namf_Communication.Namf_Communication_RegistrationStatusUpdate)
-!$N5geir_EquipmentIdentityCheck_Get_Color ?= $color($Namf_Communication.N5geir_EquipmentIdentityCheck_Get)
-!$Nudm_UECM_Registration_Color ?= $color($Namf_Communication.Nudm_UECM_Registration)
-!$Nudm_SDM_Get_Color ?= $color($Namf_Communication.Nudm_SDM_Get)
-!$Nudm_SDM_Subscribe_Color ?= $color($Namf_Communication.Nudm_SDM_Subscribe)
-!$Nudm_UECM_DeregistrationNotification_Color ?= $color($Namf_Communication.Nudm_UECM_DeregistrationNotification)
-!$Nudm_SDM_Unsubscribe_Color ?= $color($Namf_Communication.Nudm_SDM_Unsubscribe)
-!$Nsmf_PDUSession_UpdateSMContext_Color ?= $color($Namf_Communication.Nsmf_PDUSession_UpdateSMContext)
-!$Nsmf_PDUSession_ReleaseSMContext_Color ?= $color($Namf_Communication.Nsmf_PDUSession_ReleaseSMContext)
-!$Nudm_UECM_Registration_Color ?= $color($Namf_Communication.Nudm_UECM_Registration)
-!$Nudm_UECM_DeregistrationNotify_Color ?= $color($Namf_Communication.Nudm_UECM_DeregistrationNotify)
-!$Nudm_SDM_Unsubscribe_Color ?= $color($Namf_Communication.Nudm_SDM_Unsubscribe)
-!$Nudm_SDM_Info_Color ?= $color($Namf_Communication.Nudm_SDM_Info)
-!$Nudm_UECM_Update_Color ?= $color($Namf_Communication.Nudm_UECM_Update)
-!$UE_Context_Modification_Color ?= $color($Namf_Communication.UE_Context_Modification)
+!$Namf_Communication_UEContextTransfer = $color($Namf_Communication.Namf_Communication_UEContextTransfer)
+!$Namf_Communication_RegistrationStatusUpdate ?= $color($Namf_Communication.Namf_Communication_RegistrationStatusUpdate)
+!$N5gEir_EquipmentIdentityCheck_GetEquipmentStatus ?= $color($FgEir_EquipmentIdentityCheck.5gEir_EquipmentIdentityCheck_GetEquipmentStatus)
+!$Nudm_UECM_Registration ?= $color($Nudm_UECM.Nudm_UECM_Registration)
+!$Nudm_SDM_GetDataSets ?= $color($Nudm_SDM.Nudm_SDM_GetDataSets)
+!$Nudm_SDM_Subscribe ?= $color($Nudm_SDM.Nudm_SDM_Subscribe)
+!$Nudm_UECM_DeregistrationNotification ?= $color($Nudm_UECM.Nudm_UECM_DeregistrationNotification)
+!$Nudm_SDM_Unsubscribe ?= $color($Nudm_SDM.Nudm_SDM_Unsubscribe)
+!$Nsmf_PDUSession_UpdateSMContext ?= $color($Nsmf_PDUSession.Nsmf_PDUSession_UpdateSMContext)
+!$Nsmf_PDUSession_ReleaseSMContext ?= $color($Nsmf_PDUSession.Nsmf_PDUSession_ReleaseSMContext)
+!$Nudm_UECM_Registration ?= $color($Nudm_UECM.Nudm_UECM_Registration)
+!$Nudm_UECM_DeregistrationNotify ?= $color($Nudm_UECM.Nudm_UECM_DeregistrationNotify)
+!$Nudm_SDM_Unsubscribe ?= $color($Nudm_SDM.Nudm_SDM_Unsubscribe)
+!$Nudm_SDM_UpdateSORInfo ?= $color($Nudm_SDM.Nudm_SDM_UpdateSORInfo)
+!$Nudm_UECM_Update ?= $color($Nudm_UECM.Nudm_UECM_Update)
+!$UE_Context_Modification ?= $color($Namf_Communication.UE_Context_Modification)
 
 ' Requests go from left to right
 ' Responses go from right to left
@@ -45,9 +49,9 @@ ref over RAN
 end ref
 
 autonumber 3
-RAN -> NAMF : Registration Request **$Namf_Communication.Namf_Communication_UEContextTransfer**
-NAMF -[$Namf_Communication_UEContextTransfer_Color]-> OAMF : Namf_Communication_UEContextTransfer
-NAMF <-[$Namf_Communication_UEContextTransfer_Color]- OAMF : Namf_Communication_UEContextTransfer response
+RAN -> NAMF : Registration Request
+NAMF -[$Namf_Communication_UEContextTransfer]-> OAMF : Namf_Communication_UEContextTransfer
+NAMF <-[$Namf_Communication_UEContextTransfer]- OAMF : Namf_Communication_UEContextTransfer response
 NAMF --> UE : Identity Request
 NAMF <-- UE : Identity Response
 
@@ -60,28 +64,28 @@ ref over UE, UDM
 end ref
 
 autonumber 10
-NAMF -[$Namf_Communication_RegistrationStatusUpdate_Color]-> OAMF : Namf_Communication_RegistrationStatusUpdate
+NAMF -[$Namf_Communication_RegistrationStatusUpdate]-> OAMF : Namf_Communication_RegistrationStatusUpdate
 NAMF <--> UE : Identity Request/Response
-NAMF -[$N5geir_EquipmentIdentityCheck_Get_Color]-> EIR : N5g-eir_EquipmentIdentityCheck_Get
+NAMF -[$N5gEir_EquipmentIdentityCheck_GetEquipmentStatus]-> EIR : N5g-eir_EquipmentIdentityCheck_GetEquipmentStatus
 autonumber stop
-NAMF <-[$N5geir_EquipmentIdentityCheck_Get_Color]- EIR
+NAMF <-[$N5gEir_EquipmentIdentityCheck_GetEquipmentStatus]- EIR
 
 ref over NAMF
     13. UDM selection
 end ref
 
 autonumber 14.0
-NAMF -[$Nudm_UECM_Registration_Color]-> UDM : Nudm_UECM_Registration
+NAMF -[$Nudm_UECM_Registration]-> UDM : Nudm_UECM_Registration
 autonumber stop
-NAMF <-[$Nudm_UECM_Registration_Color]- UDM
+NAMF <-[$Nudm_UECM_Registration]- UDM
 autonumber resume
-NAMF -[$Nudm_SDM_Get_Color]-> UDM : Nudm_SDM_Get
+NAMF -[$Nudm_SDM_GetDataSets]-> UDM : Nudm_SDM_GetDataSets
 autonumber stop
-NAMF <-[$Nudm_SDM_Get_Color]- UDM
+NAMF <-[$Nudm_SDM_GetDataSets]- UDM
 autonumber resume
-NAMF -[$Nudm_SDM_Subscribe_Color]-> UDM : Nudm_SDM_Subscribe
-UDM -[$Nudm_UECM_DeregistrationNotification_Color]-> OAMF : Nudm_UECM_DeregistrationNotification
-UDM <-[$Nudm_SDM_Unsubscribe_Color]- OAMF : Nudm_SDM_Unsubscribe
+NAMF -[$Nudm_SDM_Subscribe]-> UDM : Nudm_SDM_Subscribe
+UDM -[$Nudm_UECM_DeregistrationNotification]-> OAMF : Nudm_UECM_DeregistrationNotification
+UDM <-[$Nudm_SDM_Unsubscribe]- OAMF : Nudm_SDM_Unsubscribe
 
 autonumber stop
 ref over NAMF
@@ -90,31 +94,31 @@ end ref
 
 autonumber 16
 NAMF <--> PCF : AM Policy Association Establishment/Modification
-NAMF -[$Nsmf_PDUSession_UpdateSMContext_Color]-> SMF : Nsmf_PDUSession_UpdateSMContext
+NAMF -[$Nsmf_PDUSession_UpdateSMContext]-> SMF : Nsmf_PDUSession_UpdateSMContext
 autonumber stop
-NAMF -[$Nsmf_PDUSession_ReleaseSMContext_Color]-> SMF : Nsmf_PDUSession_ReleaseSMContext
+NAMF -[$Nsmf_PDUSession_ReleaseSMContext]-> SMF : Nsmf_PDUSession_ReleaseSMContext
 autonumber resume
-NAMF -[$UE_Context_Modification_Color]-> WGF : UE Context Modification Request
-NAMF <-[$UE_Context_Modification_Color]- WGF : UE Context Modification Response
+NAMF -[$UE_Context_Modification]-> WGF : UE Context Modification Request
+NAMF <-[$UE_Context_Modification]- WGF : UE Context Modification Response
 autonumber 19.1
-NAMF -[$Nudm_UECM_Registration_Color]-> UDM : Nudm_UECM_Registration
-UDM -[$Nudm_UECM_DeregistrationNotify_Color]-> OAMF : Nudm_UECM_DeregistrationNotify
-UDM <-[$Nudm_SDM_Unsubscribe_Color]- OAMF : Nudm_SDM_Unsubscribe
+NAMF -[$Nudm_UECM_Registration]-> UDM : Nudm_UECM_Registration
+UDM -[$Nudm_UECM_DeregistrationNotify]-> OAMF : Nudm_UECM_DeregistrationNotify
+UDM <-[$Nudm_SDM_Unsubscribe]- OAMF : Nudm_SDM_Unsubscribe
 autonumber 21.0
 NAMF -> UE :  Registration Accept
 NAMF <--> PCF :  UE Policy Association Establishment
 autonumber 22
 NAMF <-- UE :  Registration Complete
 autonumber 23.0
-NAMF -[$Nudm_SDM_Info_Color]-> UDM : Nudm_SDM_Info
+NAMF -[$Nudm_SDM_UpdateSORInfo]-> UDM : Nudm_SDM_UpdateSORInfo
 autonumber stop
-NAMF <-[$Nudm_SDM_Info_Color]- UDM
+NAMF <-[$Nudm_SDM_UpdateSORInfo]- UDM
 autonumber resume
 NAMF --> RAN : N2 message
 autonumber 24
-NAMF -[$Nudm_UECM_Update_Color]-> UDM : Nudm_UECM_Update
+NAMF -[$Nudm_UECM_Update]-> UDM : Nudm_UECM_Update
 autonumber stop
-NAMF <-[$Nudm_UECM_Update_Color]- UDM
+NAMF <-[$Nudm_UECM_Update]- UDM
 autonumber resume
 
 ref over UE, NAMF

@@ -20,7 +20,7 @@ participant UDM as UDM
 participant DN as DN
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Nsmf_PDUSession_CreateSMContext ?= $color($Nsmf_PDUSession.Nsmf_PDUSession_CreateSMContext)
+!$Nsmf_PDUSession_PostSMContexts ?= $color($Nsmf_PDUSession.Nsmf_PDUSession_PostSMContexts)
 !$Namf_Communication_N1N2MessageTransfer ?= $color($Namf_Communication.Namf_Communication_N1N2MessageTransfer)
 !$Nsmf_PDUSession_UpdateSMContext ?= $color($Nsmf_PDUSession.Nsmf_PDUSession_UpdateSMContext)
 !$Nsmf_PDUSession_SMContextStatusNotify ?= $color($Nsmf_PDUSession.Nsmf_PDUSession_SMContextStatusNotify)
@@ -29,11 +29,11 @@ UE -> AMF : 1. PDU Session Establishment Request
 note over AMF
     2. AMF Selection
 end note
-AMF -[$Nsmf_PDUSession_CreateSMContext]> SMF : 3. Nsmf_PDUSession_CreateSMContext Request
+AMF -[$Nsmf_PDUSession_PostSMContexts]> SMF : 3. Nsmf_PDUSession_PostSMContexts Request
 ref over SMF,PCF,UDM
     4a-4b Registration/Subscription retrieval/Subscription updates
 end ref
-AMF <[$Nsmf_PDUSession_CreateSMContext]- SMF : 5. Nsmf_PDUSession_CreateSMContext Response
+AMF <[$Nsmf_PDUSession_PostSMContexts]- SMF : 5. Nsmf_PDUSession_PostSMContexts Response
 group PDU Session Establishment authentication or authorization by a DN-AAA server
 !includesub /home/puml/TS23502_PDU_Session_Establishment_Authentication_Authorization_DNAAA_Server.puml!ALL
 end

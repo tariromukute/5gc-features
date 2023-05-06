@@ -13,14 +13,14 @@ participant "V-PCF" as VPCF
 participant "H-PCF" as HPCF
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Npcf_AMPolicyControl_Delete ?= $color($Npcf_AMPolicyControl.Npcf_AMPolicyControl_Delete)
+!$Npcf_AMPolicyControl_DeleteIndividualAMPolicyAssociation ?= $color($Npcf_AMPolicyControl.Npcf_AMPolicyControl_DeleteIndividualAMPolicyAssociation)
 
 note over AMF
     1. Decision to terminate the Policy Association
 end note
 
-AMF -[$Npcf_AMPolicyControl_Delete]-> HPCF : 2. Npcf_AMPolicyControl_Delete
-AMF <-[$Npcf_AMPolicyControl_Delete]- HPCF : 3. Npcf_AMPolicyControl_Delete response
+AMF -[$Npcf_AMPolicyControl_DeleteIndividualAMPolicyAssociation]-> HPCF : 2. Npcf_AMPolicyControl_DeleteIndividualAMPolicyAssociation
+AMF <-[$Npcf_AMPolicyControl_DeleteIndividualAMPolicyAssociation]- HPCF : 3. Npcf_AMPolicyControl_DeleteIndividualAMPolicyAssociation response
 
 note over AMF
     4. Remove the Access and Mobility Control Policy

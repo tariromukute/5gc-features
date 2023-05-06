@@ -17,13 +17,13 @@ participant UDR as UDR
 participant CHF as CHF
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Npcf_SMPolicyControl_UpdateNotify ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_Update)
-!$Npcf_SMPolicyControl_Delete ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_Update)
-!$Nudr_DM_Unsubscribe ?= $color($Nudr_DM.Npcf_SMPolicyControl_Update)
+!$Npcf_SMPolicyControl_UpdateNotify ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_UpdateNotify)
+!$Npcf_SMPolicyControl_DeleteSMPolicy ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_DeleteSMPolicy)
+!$Nudr_DM_Unsubscribe ?= $color($Nudr_DM.Nudr_DM_Unsubscribe)
 
 PCF -[$Npcf_SMPolicyControl_UpdateNotify]-> SMF : 1a. Npcf_SMPolicyControl_UpdateNotify
 PCF <-[$Npcf_SMPolicyControl_UpdateNotify]- SMF : 1b. Npcf_SMPolicyControl_UpdateNotify response
-SMF -[$Npcf_SMPolicyControl_Delete]-> PCF : 2. Npcf_SMPolicyControl_Delete
+SMF -[$Npcf_SMPolicyControl_DeleteSMPolicy]-> PCF : 2. Npcf_SMPolicyControl_DeleteSMPolicy
 
 note over PCF
     3. Identify what PCC Rules are affected
@@ -41,7 +41,7 @@ ref over PCF,UDR,CHF
     6. Nchf_SpendingLimitControl unsubscribe
 end ref
 
-SMF <-[$Npcf_SMPolicyControl_Delete]- PCF : 7. Npcf_SMPolicyControl_Delete response
+SMF <-[$Npcf_SMPolicyControl_DeleteSMPolicy]- PCF : 7. Npcf_SMPolicyControl_DeleteSMPolicy response
 PCF -[$Nudr_DM_Unsubscribe]-> UDR : 8. Nudr_DM_Unsubscribe
 PCF <-[$Nudr_DM_Unsubscribe]- UDR
 !endsub
