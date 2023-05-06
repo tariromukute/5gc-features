@@ -1,0 +1,3 @@
+[submodule "5G_APIs"]
+	path = 5G_APIs
+	url = https://gitlab.com/MKTTAR001/5G_APIs.git
