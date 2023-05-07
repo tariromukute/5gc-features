@@ -43,6 +43,7 @@ TS32291_Nchf_OfflineOnlyCharging
 TS29511_N5g-eir_EquipmentIdentityCheck
 TS29520_Nnwdaf_AnalyticsInfo
 TS29520_Nnwdaf_DataManagement
+TS29520_Nnwdaf_EventsSubscription
 TS29520_Nnwdaf_MLModelProvision
 TS29598_Nudsf_DataRepository
 TS29598_Nudsf_Timer
