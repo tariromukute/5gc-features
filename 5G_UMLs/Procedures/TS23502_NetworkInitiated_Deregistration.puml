@@ -1,4 +1,6 @@
-@startuml Network-initiated Deregistration
+@startuml 
+
+title Network-initiated Deregistration
 
 !include /home/puml/common.puml
 !$Nudm_UECM = %load_json("/home/vars/Nudm_UECM.json")

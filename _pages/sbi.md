@@ -1,6 +1,6 @@
 ---
 layout: table
-title: Open source 5G Core networks comparison
+title: Network Functions' SBI endpoints support (Rel 17)
 permalink: /sbi/
 ---
 

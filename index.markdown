@@ -1,9 +1,7 @@
 ---
-title: Home
+title: Feature evaluation of open source 5G core networks
 layout: 'default'
 ---
-
-# Welcome to my website
 
 ## Table of Contents
 

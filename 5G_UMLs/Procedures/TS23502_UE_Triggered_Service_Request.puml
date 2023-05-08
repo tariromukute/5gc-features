@@ -1,4 +1,6 @@
-@startuml UE Triggered Service Request
+@startuml 
+
+title UE Triggered Service Request
 
 !include /home/puml/common.puml
 !$Nsmf_PDUSession = %load_json("/home/vars/Nsmf_PDUSession.json")

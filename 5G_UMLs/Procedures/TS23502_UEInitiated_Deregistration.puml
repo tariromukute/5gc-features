@@ -1,4 +1,6 @@
-@startuml UE-initiated Deregistration
+@startuml 
+
+title UE-initiated Deregistration
 
 !include /home/puml/common.puml
 !startsub VARS

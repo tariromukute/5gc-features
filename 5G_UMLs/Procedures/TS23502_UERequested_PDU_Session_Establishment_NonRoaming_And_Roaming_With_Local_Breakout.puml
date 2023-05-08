@@ -1,4 +1,6 @@
-@startuml UE-requested PDU Session Establishment for non-roaming and roaming with local breakout
+@startuml 
+
+title UE-requested PDU Session Establishment for non-roaming and roaming with local breakout
 
 !include /home/puml/common.puml
 !startsub ALL

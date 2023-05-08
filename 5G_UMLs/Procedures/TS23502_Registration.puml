@@ -1,4 +1,6 @@
-@startuml General Registration
+@startuml 
+
+title General Registration
 
 !include /home/puml/common.puml
 !$Namf_Communication = %load_json("/home/vars/Namf_Communication.json")
