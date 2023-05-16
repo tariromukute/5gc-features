@@ -84,8 +84,10 @@ We use the `draw.sh` script to draw the procedure diagrams for all procedures in
 ./draw.sh <input_dir> <output_dir>
 ```
 
-Created the services list from 3GPP TS 29.531 version 17.7.0 Release 17
-
+## Running the site locally
+```bash
+jekyll new --skip-bundle .
+```
 Convert xsd files to plantuml
 
 ```bash
