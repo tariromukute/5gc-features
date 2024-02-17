@@ -46,7 +46,7 @@ The list of Procedures
 - [ ] N4_Report
 - [ ] N4_Session_Establishment
 - [ ] N4_Session_Level_Reporting
-- [ ] N4_Session_Modification
+- [x] N4_Session_Modification
 - [ ] N4_Session_Release
 - [ ] NF_NF_Service_Discovery_Across_PLMNs
 - [ ] NF_NF_Service_Discovery_Same_PLMN
@@ -70,19 +70,19 @@ The list of Procedures
 - [ ] Notification_User_Plane_Management_Event
 - [ ] Nudm_EventExposure_Subscribe_Notify_Operations
 - [ ] PCF_Initiated_AM_Policy_Association_Termination
-- [ ] PCF_Initiated_SM_Policy_Association_Modification
+- [x] PCF_Initiated_SM_Policy_Association_Modification
 - [x] PDU_Session_Establishment_Authentication_Authorization_DNAAA_Server
 - [ ] PDU_Session_Establishment_Untrusted_Non3GPP_Access
-- [ ] PFD_Management_UPF
-- [ ] PFD_Retrieval_SMF
+- [x] PFD_Management_UPF
+- [x] PFD_Retrieval_SMF
 - [ ] Policy_Association_Establishment_Old_PCF
 - [ ] Procedure_Obtaining_NonUE_Associated_Network_Assistance_Data
-- [ ] Procedure_PFD_Management_NEF
+- [x] Procedure_PFD_Management_NEF_triggered_by_AF
 - [ ] Procedure_UE_Context_Release_N3IWF
 - [ ] Procedure_Update_Subscription_Information_PCF
 - [ ] Procedures_EPS_Bearer_ID_Allocation
 - [ ] Procedures_EPS_Bearer_IDs_Transfer
-- [ ] Processing_AF_Requests_Influence_Traffic_Routing_Sessions_Not_Identified_By_UE_Address
+- [x] Processing_AF_Requests_Influence_Traffic_Routing_Sessions_Not_Identified_By_UE_Address
 - [ ] Providing_AF_Request_PCFs
 - [ ] RAT_Fallback_IMS_Voice
 - [ ] RRC_Inactive_RRC_Connected_State_Transition
@@ -126,3 +126,4 @@ The list of Procedures
 - [ ] Xn_Based_Inter_NGRAN_Handover_With_Intermediate_UPF_ReAllocation
 - [ ] Xn_Based_Inter_NGRAN_andover_With_Insertion_Intermediate_UPF
 - [ ] Xn_Based_Inter_NGRAN_Handover_Without_UPF_ReAllocation
+- [x] Handling_an_AF_request_targeting_an_individual_UE_address_to_the_relevant_PCF

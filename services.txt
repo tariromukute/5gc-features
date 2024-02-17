@@ -48,6 +48,7 @@ TS29520_Nnwdaf_MLModelProvision
 TS29598_Nudsf_DataRepository
 TS29598_Nudsf_Timer
 TS29521_Nbsf_Management
+TS29591_Nnef_TrafficInfluenceData
 TS29572_Nlmf_Location
 TS29515_Ngmlc_Location
 TS29675_Nucmf_Provisioning

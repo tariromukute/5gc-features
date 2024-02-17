@@ -1,0 +1,37 @@
+@startuml procedure for PFD management via NEF triggered by AF
+!include /home/puml/common.puml
+!startsub ALL
+
+' Uses:
+
+' Used by:
+
+!$Nnef_PFDManagement = %load_json("/home/vars/Nnef_PFDManagement.json")
+!$Nudr_DM = %load_json("/home/vars/Nudr_DM.json")
+
+participant UDR as UDR
+participant NEF as "NEF(PFDF)"
+participant AF as AF
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Nnef_PFDManagement_Create ?= $color($Nnef_PFDManagement.Nnef_PFDManagement_Create)
+!$Nnef_PFDManagement_Update ?= $color($Nnef_PFDManagement.Nnef_PFDManagement_Update)
+!$Nnef_PFDManagement_Delete ?= $color($Nnef_PFDManagement.Nnef_PFDManagement_Delete)
+!$Nudr_DM_Create ?= $color($Nudr_DM.Nudr_DM_Create)
+!$Nudr_DM_Update ?= $color($Nudr_DM.Nudr_DM_Update)
+!$Nudr_DM_Delete ?= $color($Nudr_DM.Nudr_DM_Delete)
+
+autonumber
+
+AF -[$Nnef_PFDManagement_Create]> NEF : Nnef_PFDManagement_Create/Update/Delete request
+ref over NEF
+    NEF handling
+end ref
+NEF -[$Nudr_DM_Create]> UDR : Nudr_DM_Create/Update/Delete request
+ref over PCF
+    1. PFD handling
+end ref
+NEF <[$Nudr_DM_Create]- UDR : Nudr_DM_Create/Update/Delete response
+AF <[$Nnef_PFDManagement_Create]- NEF : Nnef_PFDManagement_Create/Update/Delete response
+!endsub
+@enduml

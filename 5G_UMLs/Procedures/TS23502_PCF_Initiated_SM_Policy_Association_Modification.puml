@@ -1,3 +1,52 @@
 @startuml PCF initiated SM Policy Association Modification
+!include /home/puml/common.puml
+!startsub ALL
 
+' Uses:
+
+' Used by:
+
+!$Npcf_SMPolicyControl = %load_json("/home/vars/Npcf_SMPolicyControl.json")
+
+participant SMF as SMF
+participant PCF as PCF
+participant UDR as UDR
+participant AF as AF
+participant CHF as CHF
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Npcf_SMPolicyControl_UpdateNotify ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_UpdateNotify)
+
+
+!startsub AF_Application_Service_Info
+' TODO: Reference the interaction between AF and PCF requesting service
+PCF <--> AF : 1a. Application/Service Info
+!endsub
+
+!startsub Spending_Limit_Report
+' TODO: Reference the interaction between CHF and PCF requesting service
+PCF <--> CHF : 1b. Spending Limit Report
+!endsub
+
+!startsub Nudr_DM_Notify
+PCF <-- UDR : 1b. Spending Limit Report
+!endsub
+ref over PCF
+    1d. Internal event
+end ref
+
+ref over PCF, CHF
+    2. Spending Limit Report Retrieval
+end ref
+
+!startsub Policy_Management
+ref over PCF
+    3. Policy Decision
+end ref
+SMF <[$Npcf_SMPolicyControl_UpdateNotify]- PCF : Npcf_SMPolicyControl_UpdateNotify request
+SMF -[$Npcf_SMPolicyControl_UpdateNotify]> PCF : Npcf_SMPolicyControl_UpdateNotify response
+
+!endsub
+
+!endsub
 @enduml

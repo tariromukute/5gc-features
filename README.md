@@ -95,3 +95,18 @@ $ pip install xsdata-plantuml
 
 $ xsdata samples/order.xsd --output plantuml --package samples
 ```
+
+## Setps to update `5G_APIs` with changes from `https://forge.3gpp.org/rep/all/5G_APIs.git`
+
+```bash
+cd 5G_APIs
+
+git checkout -b REL-18-update
+
+git remote add gpp3 https://forge.3gpp.org/rep/all/5G_APIs.git
+git remote update
+
+# Get changes from the release branch
+# Note: Changed some NF service titles for consistency and autogeneration, so will need to resolve conflicts
+git merge --allow-unrelated-histories gpp3/REL-18
+```

@@ -1,0 +1,43 @@
+@startuml Handling an AF request targeting an individual UE address to the relevant PCF
+!include /home/puml/common.puml
+!startsub ALL
+
+' Uses:
+
+' Used by:
+
+!$Nbsf_Management = %load_json("/home/vars/Nbsf_Management.json")
+!$Npcf_SMPolicyControl = %load_json("/home/vars/Npcf_SMPolicyControl.json")
+!$Nsmf_PDUSession = %load_json("/home/vars/Nsmf_PDUSession.json")
+
+participant PCF as PCF
+participant BSF as BSF
+participant AF as "AF/NEF"
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Nbsf_Management_GetPCFBindings ?= $color($Nbsf_Management.Nbsf_Management_GetPCFBindings)
+!$Npcf_SMPolicyControl_CreateSMPolicy ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_CreateSMPolicy)
+!$Npcf_SMPolicyControl_UpdateSMPolicy ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_UpdateSMPolicy)
+!$Npcf_SMPolicyControl_DeleteSMPolicy ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_DeleteSMPolicy)
+
+autonumber
+!startsub AF_BSF
+ref over AF
+    1. NEF receives Nnef_TrafficInfluence_Create/Update/Delete Request from AF (This should reference the actual flow)
+end ref
+!endsub
+
+!startsub AF_PCF
+AF <-[$Nbsf_Management_GetPCFBindings]- BSF : Nbsf_Management_GetPCFBindings request
+AF -[$Nbsf_Management_GetPCFBindings]-> BSF : Nbsf_Management_GetPCFBindings response
+AF -[$Npcf_SMPolicyControl_CreateSMPolicy]> PCF : Npcf_SMPolicyControl_CreateSMPolicy request
+AF -[$Npcf_SMPolicyControl_UpdateSMPolicy]> PCF : Npcf_SMPolicyControl_UpdateSMPolicy request
+AF -[$Npcf_SMPolicyControl_DeleteSMPolicy]> PCF : Npcf_SMPolicyControl_DeleteSMPolicy request
+!endsub
+
+ref over PCF
+    1. PCF initiated SM Policy Association Modification (this should reference the actual flow)
+end ref
+
+!endsub
+@enduml

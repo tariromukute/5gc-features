@@ -1,3 +1,64 @@
 @startuml Processing AF requests to influence traffic routing for Sessions not identified by an an UE address
 
+!include /home/puml/common.puml
+!startsub ALL
+!$Nnef_TrafficInfluenceData = %load_json("/home/vars/Nnef_TrafficInfluenceData.json")
+!$Nudr_DM = %load_json("/home/vars/Nudr_DM.json")
+!$Npcf_SMPolicyControl = %load_json("/home/vars/Npcf_SMPolicyControl.json")
+!$Nsmf_PDUSession = %load_json("/home/vars/Nsmf_PDUSession.json")
+
+' Uses:
+'   Traffic Routing Reconfiguration
+
+' Used by:
+
+participant AMF as AMF
+participant "UPF/EASDF" as UPF
+participant SMF as SMF
+participant "PCFs" as PCF
+participant UDR as UDR
+participant NEF as NEF
+participant AF as AF
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Nnef_TrafficInfluenceData_CreateIndividualSubcription ?= $color($Nnef_TrafficInfluenceData.Nnef_TrafficInfluenceData_CreateIndividualSubcription)
+!$Nnef_TrafficInfluenceData_ReplaceIndividualSubcription ?= $color($Nnef_TrafficInfluenceData.Nnef_TrafficInfluenceData_ReplaceIndividualSubcription)
+!$Nnef_TrafficInfluenceData_DeleteIndividualSubcription ?= $color($Nnef_TrafficInfluenceData.Nnef_TrafficInfluenceData_DeleteIndividualSubcription)
+!$Nudr_DM_Notify ?= $color($Nudr_DM.Nudr_DM_Notify)
+!$Npcf_SMPolicyControl_UpdateNotify ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_UpdateNotify)
+!$Nsmf_PDUSession_NotifyStatus_isfm ?= $color($Nsmf_PDUSession.Nsmf_PDUSession_NotifyStatus_isfm)
+
+ref over PCF, UDR
+    0. The PCF(s) subscribe to modifications of AF requests 
+end ref
+
+ref over AF
+    1. Creation of the AF Request
+end ref
+NEF <[$Nnef_TrafficInfluenceData_CreateIndividualSubcription]- AF : 2. Nnef_TrafficInfluence_Create/Update/Delete
+NEF <[$Nnef_TrafficInfluenceData_ReplaceIndividualSubcription]- AF
+NEF <[$Nnef_TrafficInfluenceData_DeleteIndividualSubcription]- AF
+ref over UDR, NEF
+    3a. Storing/Updating/Removing the information
+end ref
+NEF -[$Nnef_TrafficInfluenceData_CreateIndividualSubcription]> AF : 3b. Nnef_TrafficInfluence_Create/Update/Delete
+NEF -[$Nnef_TrafficInfluenceData_ReplaceIndividualSubcription]> AF
+NEF -[$Nnef_TrafficInfluenceData_DeleteIndividualSubcription]> AF
+
+PCF <-[$Nudr_DM_Notify]- UDR : 4. Nudr_DM_Notify
+
+SMF <-[$Npcf_SMPolicyControl_UpdateNotify]- PCF : 5. Npcf_SMPolicyControl_UpdateNotify
+SMF -[$Npcf_SMPolicyControl_UpdateNotify]-> PCF
+
+ref over UPF, SMF
+    6. Traffic Routing Reconfiguration
+end ref
+
+' group UE-requested PDU Session Establishment for non-roaming and roaming with local breakout
+' !includesub /home/puml/TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.puml!ALL
+' end
+
+AMF <-[$Nsmf_PDUSession_NotifyStatus_isfm]- SMF : 7. Nsmf_PDUSession_SMContextStatusNotify
+!endsub
+
 @enduml

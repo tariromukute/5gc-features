@@ -1,3 +1,27 @@
 @startuml PFD Retrieval by the SMF
+!include /home/puml/common.puml
+!startsub ALL
 
+' Uses:
+
+' Used by:
+
+!$Nnef_PFDManagement = %load_json("/home/vars/Nnef_PFDManagement.json")
+!$Nudr_DM = %load_json("/home/vars/Nudr_DM.json")
+
+participant SMF as SMF
+participant UDR as UDR
+participant NEF as "NEF(PFDF)"
+
+' Assign default colors to the Operations is they are not assigned in the vars file
+!$Nnef_PFDManagement_IndAppFetch ?= $color($Nnef_PFDManagement.Nnef_PFDManagement_IndAppFetch)
+!$Nudr_DM_Query ?= $color($Nudr_DM.Nudr_DM_Query)
+
+autonumber
+
+SMF -[$Nnef_PFDManagement_IndAppFetch]> NEF : Nnef_PFDManagement_IndAppFetch request
+
+NEF -[$Nudr_DM_Query]> UDR : Nudr_DM_Query request
+NEF <[$Nudr_DM_Create]- UDR : Nudr_DM_Query response
+SMF <[$Nnef_PFDManagement_IndAppFetch]- NEF : Nnef_PFDManagement_IndAppFetch response
 @enduml
