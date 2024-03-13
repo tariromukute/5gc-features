@@ -1,10 +1,12 @@
 @startuml PCF initiated SM Policy Association Modification
 !include /home/puml/common.puml
-!startsub ALL
+' !startsub ALL
 
 ' Uses:
 
 ' Used by:
+'   AF_Initiated_SFC.puml
+'   TS23502_Handling_an_AF_request_targeting_an_individual_UE_address_to_the_relevant_PCF
 
 !$Npcf_SMPolicyControl = %load_json("/home/vars/Npcf_SMPolicyControl.json")
 
@@ -31,22 +33,22 @@ PCF <--> CHF : 1b. Spending Limit Report
 !startsub Nudr_DM_Notify
 PCF <-- UDR : 1b. Spending Limit Report
 !endsub
-ref over PCF
+note over PCF
     1d. Internal event
-end ref
+end note
 
-ref over PCF, CHF
+note over PCF, CHF
     2. Spending Limit Report Retrieval
-end ref
+end note
 
 !startsub Policy_Management
-ref over PCF
+note over PCF
     3. Policy Decision
-end ref
+end note
 SMF <[$Npcf_SMPolicyControl_UpdateNotify]- PCF : Npcf_SMPolicyControl_UpdateNotify request
 SMF -[$Npcf_SMPolicyControl_UpdateNotify]> PCF : Npcf_SMPolicyControl_UpdateNotify response
 
 !endsub
 
-!endsub
+' !endsub
 @enduml

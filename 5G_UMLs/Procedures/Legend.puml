@@ -1,0 +1,20 @@
+@startuml Legend
+!startsub ALL
+' set legend to have a white background
+skinparam legendBackgroundColor #FFFFFF
+' remove box around legend
+skinparam legendBorderColor #FFFFFF
+' remove the lines between the legend items
+skinparam legendEntrySeparator #FFFFFF
+
+
+legend right
+'   the <#FFFFFF,#FFFFFF> sets the background color of the legend to white
+    <#FFFFFF,#FFFFFF>|<#red>| API not implemented|
+    ' the space between the | and <#blue> is important to make the color column wider
+    |<#green>| API implemented|
+    |<#gray>     | Callback API|
+    |<#black>     | Not http endpoint|
+endlegend
+!endsub
+@enduml

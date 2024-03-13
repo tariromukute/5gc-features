@@ -9,16 +9,16 @@
 participant UPF as UPF
 participant SMF as SMF
 
-ref over SMF
+note over SMF
     1. Trigger to modify PDU session
-end ref
+end note
 
 autonumber 2
 SMF -> UPF : N4 Session Modification request
 SMF <- UPF : N4 Session Modification response
 
-ref over SMF
+note over SMF
     4. Interaction with other network function
-end ref
+end note
 !endsub
 @enduml

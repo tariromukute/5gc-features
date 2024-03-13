@@ -6,7 +6,8 @@
 
 ' Used by:
 
-!$Nnef_PFDManagement = %load_json("/home/vars/Nnef_PFDManagement.json")
+!$Nnef_PFDmanagement = %load_json("/home/vars/Nnef_PFDmanagement.json")
+!$Nudr_DataRepository = %load_json("/home/vars/Nudr_DataRepository.json")
 !$Nudr_DM = %load_json("/home/vars/Nudr_DM.json")
 
 participant UDR as UDR
@@ -14,24 +15,25 @@ participant NEF as "NEF(PFDF)"
 participant AF as AF
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Nnef_PFDManagement_Create ?= $color($Nnef_PFDManagement.Nnef_PFDManagement_Create)
-!$Nnef_PFDManagement_Update ?= $color($Nnef_PFDManagement.Nnef_PFDManagement_Update)
-!$Nnef_PFDManagement_Delete ?= $color($Nnef_PFDManagement.Nnef_PFDManagement_Delete)
+!$Nnef_PFDmanagement_AppFetchPartialUpdate ?= $color($Nnef_PFDmanagement.Nnef_PFDmanagement_AppFetchPartialUpdate)
+!$Nudr_DataRepository_CreateOrReplaceIndividualPFDData ?= $color($Nudr_DataRepository.Nudr_DataRepository_CreateOrReplaceIndividualPFDData)
 !$Nudr_DM_Create ?= $color($Nudr_DM.Nudr_DM_Create)
 !$Nudr_DM_Update ?= $color($Nudr_DM.Nudr_DM_Update)
 !$Nudr_DM_Delete ?= $color($Nudr_DM.Nudr_DM_Delete)
 
 autonumber
 
-AF -[$Nnef_PFDManagement_Create]> NEF : Nnef_PFDManagement_Create/Update/Delete request
-ref over NEF
+AF -[$Nnef_PFDmanagement_AppFetchPartialUpdate]> NEF : Nnef_PFDmanagement_AppFetchPartialUpdate request
+note over NEF
     NEF handling
-end ref
-NEF -[$Nudr_DM_Create]> UDR : Nudr_DM_Create/Update/Delete request
-ref over PCF
-    1. PFD handling
-end ref
-NEF <[$Nudr_DM_Create]- UDR : Nudr_DM_Create/Update/Delete response
-AF <[$Nnef_PFDManagement_Create]- NEF : Nnef_PFDManagement_Create/Update/Delete response
+end note
+NEF -[$Nudr_DataRepository_CreateOrReplaceIndividualPFDData]> UDR : Nudr_DataRepository_CreateOrReplaceIndividualPFDData/Update/Delete request
+note over UDR
+    PFD handling
+end note
+NEF <[$Nudr_DataRepository_CreateOrReplaceIndividualPFDData]- UDR : Nudr_DataRepository_CreateOrReplaceIndividualPFDData/Update/Delete response
+AF <[$Nnef_PFDmanagement_AppFetchPartialUpdate]- NEF : Nnef_PFDmanagement_AppFetchPartialUpdate response
 !endsub
+
+!includesub /home/puml/Legend.puml!ALL
 @enduml

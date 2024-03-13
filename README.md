@@ -34,18 +34,18 @@ docker run --rm \
   -v ${PWD}/openapi:/local \
   -v ${PWD}/5G_APIs:/home \
   openapitools/openapi-generator-cli generate \
-  -i /home/TS29518_Namf_Communication.yaml \
   -g html \
   -t /local/templates/html/ \
-  -o /local/out/html
+  -o /local/out/html \
+  -i /home/TS29518_Namf_Communication.yaml
 
 docker run --rm \
   -v ${PWD}/openapi:/local \
   -v ${PWD}/5G_APIs:/home \
   openapitools/openapi-generator-cli generate \
-  -i /home/TS29518_Namf_Communication.yaml \
   -g plantuml \
-  -o /local/out/plantuml
+  -o /local/out/plantuml \
+  -i /home/TS29518_Namf_Communication.yaml
 ```
 
 ## Generate Procedure diagrams
@@ -96,7 +96,7 @@ $ pip install xsdata-plantuml
 $ xsdata samples/order.xsd --output plantuml --package samples
 ```
 
-## Setps to update `5G_APIs` with changes from `https://forge.3gpp.org/rep/all/5G_APIs.git`
+## Setup to update `5G_APIs` with changes from `https://forge.3gpp.org/rep/all/5G_APIs.git`
 
 ```bash
 cd 5G_APIs

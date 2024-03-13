@@ -9,9 +9,9 @@
 participant SMF as SMF
 participant UPF as UPF
 
-ref over SMF
+note over SMF
     1. Trigger to provision or remove the set of PFDs belonging to an Application Identifier
-end ref
+end note
 
 autonumber 2
 SMF -> UPF : PFD management request

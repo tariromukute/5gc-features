@@ -6,22 +6,26 @@
 
 ' Used by:
 
-!$Nnef_PFDManagement = %load_json("/home/vars/Nnef_PFDManagement.json")
+!$Nnef_PFDmanagement = %load_json("/home/vars/Nnef_PFDmanagement.json")
+!$Nudr_DataRepository = %load_json("/home/vars/Nudr_DataRepository.json")
 !$Nudr_DM = %load_json("/home/vars/Nudr_DM.json")
 
 participant SMF as SMF
-participant UDR as UDR
 participant NEF as "NEF(PFDF)"
+participant UDR as UDR
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
-!$Nnef_PFDManagement_IndAppFetch ?= $color($Nnef_PFDManagement.Nnef_PFDManagement_IndAppFetch)
+!$Nnef_PFDmanagement_IndAppFetch ?= $color($Nnef_PFDmanagement.Nnef_PFDmanagement_IndAppFetch)
 !$Nudr_DM_Query ?= $color($Nudr_DM.Nudr_DM_Query)
+!$Nudr_DM_Create ?= $color($Nudr_DM.Nudr_DM_Create)
+!$Nudr_DataRepository_ReadPFDData ?= $color($Nudr_DataRepository.Nudr_DataRepository_ReadPFDData)
 
 autonumber
 
-SMF -[$Nnef_PFDManagement_IndAppFetch]> NEF : Nnef_PFDManagement_IndAppFetch request
+SMF -[$Nnef_PFDmanagement_IndAppFetch]> NEF : Nnef_PFDmanagement_IndAppFetch request
 
-NEF -[$Nudr_DM_Query]> UDR : Nudr_DM_Query request
-NEF <[$Nudr_DM_Create]- UDR : Nudr_DM_Query response
-SMF <[$Nnef_PFDManagement_IndAppFetch]- NEF : Nnef_PFDManagement_IndAppFetch response
+NEF -[$Nudr_DataRepository_ReadPFDData]> UDR : Nudr_DataRepository_ReadPFDData request
+NEF <[$Nudr_DataRepository_ReadPFDData]- UDR : Nudr_DataRepository_ReadPFDData response
+SMF <[$Nnef_PFDmanagement_IndAppFetch]- NEF : Nnef_PFDmanagement_IndAppFetch response
+!endsub
 @enduml

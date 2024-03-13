@@ -36,14 +36,10 @@ ref over AF
     1. Creation of the AF Request
 end ref
 NEF <[$Nnef_TrafficInfluenceData_CreateIndividualSubcription]- AF : 2. Nnef_TrafficInfluence_Create/Update/Delete
-NEF <[$Nnef_TrafficInfluenceData_ReplaceIndividualSubcription]- AF
-NEF <[$Nnef_TrafficInfluenceData_DeleteIndividualSubcription]- AF
 ref over UDR, NEF
     3a. Storing/Updating/Removing the information
 end ref
 NEF -[$Nnef_TrafficInfluenceData_CreateIndividualSubcription]> AF : 3b. Nnef_TrafficInfluence_Create/Update/Delete
-NEF -[$Nnef_TrafficInfluenceData_ReplaceIndividualSubcription]> AF
-NEF -[$Nnef_TrafficInfluenceData_DeleteIndividualSubcription]> AF
 
 PCF <-[$Nudr_DM_Notify]- UDR : 4. Nudr_DM_Notify
 

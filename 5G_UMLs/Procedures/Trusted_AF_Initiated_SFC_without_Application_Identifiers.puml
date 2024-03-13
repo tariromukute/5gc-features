@@ -1,47 +1,50 @@
-@startuml Handling an AF request targeting an individual UE address to the relevant PCF
+@startuml SFC initiated by trusted AF without application identifiers
 !include /home/puml/common.puml
 ' !startsub ALL
 
 ' Uses:
 '   TS23502_PCF_Initiated_SM_Policy_Association_Modification
-
+'   TS23502_N4_Session_Modification
 ' Used by:
 
 !$Nbsf_Management = %load_json("/home/vars/Nbsf_Management.json")
 !$Npcf_SMPolicyControl = %load_json("/home/vars/Npcf_SMPolicyControl.json")
 !$Nsmf_PDUSession = %load_json("/home/vars/Nsmf_PDUSession.json")
 
-participant SMF as SMF
-participant PCF as PCF
-participant BSF as BSF
-participant AF as "AF/NEF"
+!$Npcf_PolicyAuthorization = %load_json("/home/vars/Npcf_PolicyAuthorization.json")
+
+
+participant UPF as UPF order 1
+participant SMF as SMF order 2
+participant PCF as PCF order 3
+' participant BSF as BSF
+participant AF as AF order 4
 
 ' Assign default colors to the Operations is they are not assigned in the vars file
 !$Nbsf_Management_GetPCFBindings ?= $color($Nbsf_Management.Nbsf_Management_GetPCFBindings)
 !$Npcf_SMPolicyControl_CreateSMPolicy ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_CreateSMPolicy)
 !$Npcf_SMPolicyControl_UpdateSMPolicy ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_UpdateSMPolicy)
 !$Npcf_SMPolicyControl_DeleteSMPolicy ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_DeleteSMPolicy)
-' For TS23502_PCF_Initiated_SM_Policy_Association_Modification sub Policy_Management
 !$Npcf_SMPolicyControl_UpdateNotify ?= $color($Npcf_SMPolicyControl.Npcf_SMPolicyControl_UpdateNotify)
 
+!$Npcf_PolicyAuthorization_Create ?= $color($Npcf_PolicyAuthorization.Npcf_PolicyAuthorization_PostAppSessions)
+
 autonumber
-!startsub AF_BSF
-' TODO: this should reference the actual flow
-ref over AF
-    1. NEF receives Nnef_TrafficInfluence_Create/Update/Delete Request from AF
-end ref
-!endsub
 
 !startsub AF_PCF
-AF <-[$Nbsf_Management_GetPCFBindings]- BSF : Nbsf_Management_GetPCFBindings request
-AF -[$Nbsf_Management_GetPCFBindings]-> BSF : Nbsf_Management_GetPCFBindings response
-AF -[$Npcf_SMPolicyControl_CreateSMPolicy]> PCF : Npcf_SMPolicyControl_CreateSMPolicy/Update/Delete request
+' AF <-[$Nbsf_Management_GetPCFBindings]- BSF : Nbsf_Management_GetPCFBindings request
+' AF -[$Nbsf_Management_GetPCFBindings]-> BSF : Nbsf_Management_GetPCFBindings response
+AF -[$Npcf_PolicyAuthorization_Create]> PCF : Npcf_PolicyAuthorization_Create/Update/Delete request
 !endsub
 
-' TODO: this should reference the actual flow
 group PCF initiated SM Policy Association Modification
 !includesub /home/puml/TS23502_PCF_Initiated_SM_Policy_Association_Modification.puml!Policy_Management
 end
 
+group N4 Session Modification
+!includesub /home/puml/TS23502_N4_Session_Modification.puml!ALL
+end
+
+!includesub /home/puml/Legend.puml!ALL
 ' !endsub
 @enduml
