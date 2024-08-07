@@ -1,0 +1,77 @@
+site_name: 5G features
+site_url: https://tariromukute.github.io/5gc-features
+repo_name: tariromukute/5gc-features
+theme:
+  name: material
+  features:
+    - navigation.indexes
+    # - navigation.sections
+nav:
+  - Home: index.md
+  - Contributing: contributing.md
+  - How it works: how-it-works.md
+  - SBI endpoints (Rel 17):
+    - blog/sbi/amf.md
+    - blog/sbi/smf.md
+    - blog/sbi/ausf.md
+    - blog/sbi/nrf.md
+    - blog/sbi/pcf.md
+    - blog/sbi/udr.md
+    - blog/sbi/udm.md
+    - blog/sbi/nef.md
+    - blog/sbi/nssf.md
+    - blog/sbi/bsf.md
+    - blog/sbi/af.md
+    - blog/sbi/nwdaf.md
+    - blog/sbi/dccf.md
+    - blog/sbi/easdf.md
+    - blog/sbi/smsf.md
+    - blog/sbi/gmlc.md
+    - blog/sbi/ucmf.md
+    - blog/sbi/mbsmf.md
+    - blog/sbi/mfaf.md
+    - blog/sbi/nsacf.md
+    - blog/sbi/nssaaf.md
+    - blog/sbi/tsctsf.md
+  - Procedures (Rel 17):
+    - blog/procedures/TS23502_Registration.md
+    - blog/procedures/TS23502_UEInitiated_Deregistration.md
+    - blog/procedures/TS23502_UE_Triggered_Service_Request.md
+    - blog/procedures/TS23502_UERequested_PDU_Session_Establishment_NonRoaming_And_Roaming_With_Local_Breakout.md
+    - blog/procedures/TS23502_Network_Triggered_Service_Request.md
+    - blog/procedures/TS23502_NetworkInitiated_Deregistration.md
+    - blog/procedures/TS23502_Processing_AF_Requests_Influence_Traffic_Routing_Sessions_Not_Identified_By_UE_Address.md
+    - blog/procedures/TS23502_PFD_Management_UPF.md
+    - blog/procedures/TS23502_Handling_an_AF_request_targeting_an_individual_UE_address_to_the_relevant_PCF.md
+    - blog/procedures/TS23502_N4_Session_Modification.md
+    - blog/procedures/TS23502_PFD_Retrieval_SMF.md
+    - blog/procedures/TS23502_Procedure_PFD_Management_NEF_triggered_by_AF.md
+    - blog/procedures/Trusted_AF_Initiated_SFC_with_Application_Identifiers.md
+    - blog/procedures/Trusted_AF_Initiated_SFC_without_Application_Identifiers.md
+plugins:
+  - search
+  - blog
+  - markdownextradata
+  - macros:
+      verbose: true
+      module_name: main
+      render_by_default: false
+      j2_block_start_string: '[[%'
+      j2_block_end_string: '%]]'
+      j2_variable_start_string: '[['
+      j2_variable_end_string: ']]'
+      j2_comment_start_string: '[#'
+      j2_comment_end_string: '#]'
+markdown_extensions:
+  # - pymdownx.snippets
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+  # - plantuml_markdown:
+  #     server: http://www.plantuml.com/plantuml
