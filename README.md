@@ -1,4 +1,4 @@
-# 5GC Implementaion completeness analyis
+# Completeness Evaluation of 5G Core Networks
 
 ## How it works
 

@@ -1,6 +1,7 @@
-site_name: 5G features
+site_name: Completeness Evaluation of 5G Core Networks
 site_url: https://tariromukute.github.io/5gc-features
 repo_name: tariromukute/5gc-features
+repo_url: https://github.com/tariromukute/5gc-features
 theme:
   name: material
   features:
@@ -8,8 +9,9 @@ theme:
     # - navigation.sections
 nav:
   - Home: index.md
-  - Contributing: contributing.md
   - How it works: how-it-works.md
+  - Contributing: contributing.md
+  # - inventory.md
   - SBI endpoints (Rel 17):
     - blog/sbi/amf.md
     - blog/sbi/smf.md
@@ -63,7 +65,7 @@ plugins:
       j2_comment_start_string: '[#'
       j2_comment_end_string: '#]'
 markdown_extensions:
-  # - pymdownx.snippets
+  - pymdownx.snippets
   - tables
   - attr_list
   - md_in_html
