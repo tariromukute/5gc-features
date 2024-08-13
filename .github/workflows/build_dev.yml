@@ -32,5 +32,6 @@ jobs:
           pip install mkdocs-markdownextradata-plugin
           pip install mkdocs-macros-plugin
           pip install mike
+      - run: mike delete --all
       - name: Build Docs Website
         run: mike deploy --push dev
