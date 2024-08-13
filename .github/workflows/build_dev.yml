@@ -34,5 +34,6 @@ jobs:
           pip install mike
       - name: Build Docs Website
         run: |
+          mike delete --all
           # mike set-default --push latest
           mkdocs gh-deploy --force
