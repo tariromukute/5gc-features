@@ -1,8 +1,7 @@
-name: ci 
+name: Build/Publish Develop Docs 
 on:
   push:
     branches:
-      - master 
       - main
 permissions:
   contents: write
@@ -10,7 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
@@ -18,15 +19,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
       - uses: actions/cache@v4
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material
-      - run: pip install plantuml-markdown
-      - run: pip install mkdocs-markdownextradata-plugin
-      - run: pip install mkdocs-macros-plugin
-      - run: mkdocs gh-deploy --force
+      - name: Install Dependencies
+        run: |
+          pip install mkdocs-material
+          pip install plantuml-markdown
+          pip install mkdocs-markdownextradata-plugin
+          pip install mkdocs-macros-plugin
+      - name: Build Docs Website
+        run: mike deploy --push develop

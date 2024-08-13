@@ -11,6 +11,7 @@ nav:
   - Home: index.md
   - How it works: how-it-works.md
   - Contributing: contributing.md
+  - citation.md
   # - inventory.md
   - SBI endpoints (Rel 17):
     - blog/sbi/amf.md
@@ -64,6 +65,9 @@ plugins:
       j2_variable_end_string: ']]'
       j2_comment_start_string: '[#'
       j2_comment_end_string: '#]'
+extra:
+  version:
+    provider: mike
 markdown_extensions:
   - pymdownx.snippets
   - tables
