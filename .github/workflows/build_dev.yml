@@ -31,5 +31,6 @@ jobs:
           pip install plantuml-markdown
           pip install mkdocs-markdownextradata-plugin
           pip install mkdocs-macros-plugin
+          pip install mike
       - name: Build Docs Website
         run: mike deploy --push develop
