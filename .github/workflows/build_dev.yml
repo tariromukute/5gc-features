@@ -34,4 +34,6 @@ jobs:
           pip install mike
       - run: mike delete --all
       - name: Build Docs Website
-        run: mike deploy --push latest
+        run: |
+          mike deploy --push latest
+          mike set-default latest
