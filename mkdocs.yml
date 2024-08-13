@@ -68,9 +68,9 @@ plugins:
       j2_comment_end_string: '#]'
 extra_css:
   - stylesheets/extra.css
-extra:
-  version:
-    provider: mike
+# extra:
+#   version:
+#     provider: mike
 markdown_extensions:
   - pymdownx.snippets
   - tables
