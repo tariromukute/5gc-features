@@ -4,6 +4,7 @@ repo_name: tariromukute/5gc-features
 repo_url: https://github.com/tariromukute/5gc-features
 theme:
   name: material
+  custom_dir: docs/overrides
   features:
     - navigation.indexes
     # - navigation.sections
@@ -65,6 +66,8 @@ plugins:
       j2_variable_end_string: ']]'
       j2_comment_start_string: '[#'
       j2_comment_end_string: '#]'
+extra_css:
+  - stylesheets/extra.css
 extra:
   version:
     provider: mike

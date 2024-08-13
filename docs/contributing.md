@@ -69,6 +69,7 @@ git merge --allow-unrelated-histories gpp3/REL-18
 ```
 
 You will then need to:
+
 1. Update the `services.txt` with any new services from the release.
 2. Run `convert.sh`: This create html files that will be used to update the `<Network Function Service>.json` for each 5GC.
 
