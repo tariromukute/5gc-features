@@ -67,6 +67,7 @@ plugins:
       j2_comment_end_string: '#]'
 extra:
   version:
+    alias: true
     provider: mike
 markdown_extensions:
   - pymdownx.snippets
